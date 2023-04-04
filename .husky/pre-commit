@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm --prefix ./frontend run lint-ts && npm --prefix ./api run lint-ts && npm --prefix ./frontend run lint && npm --prefix ./api run lint
