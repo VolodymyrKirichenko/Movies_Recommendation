@@ -40,7 +40,7 @@ export const CardTooltipe: FC<Props> = (props) => {
             <Box>
               <Typography color="blue" fontWeight="bold">{movie.title}</Typography>
 
-              <b>{movie.overview}</b>
+              <strong>{movie.overview}</strong>
             </Box>
           </Box>
         )}

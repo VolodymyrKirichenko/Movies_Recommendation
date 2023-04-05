@@ -3,17 +3,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import Alert from '@mui/material/Alert';
-import CloseIcon from '@mui/icons-material/Close';
 import {
   FC, useCallback, useEffect, useState,
 } from 'react';
+import { ModalAlert } from './ModalAlert/ModalAlert';
+import { ModalTitle } from './ModalTitle/ModalTitle';
+import { ModalInput } from './ModalInput/ModalInput';
 
 const style = {
   position: 'absolute',
@@ -69,81 +64,19 @@ export const ConfirmModal: FC<Props> = (props) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-
-        <Box sx={{ position: 'relative' }}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            sx={{
-              position: 'absolute',
-              left: '25%',
-              bottom: -20,
-            }}
-          >
-            My favorite movies
-          </Typography>
-        </Box>
+        <ModalTitle />
 
         <Typography id="modal-modal-title" variant="h6" component="h2">
           {title}
         </Typography>
 
-        <Paper
-          component="form"
-          sx={{
-            p: '2px 4px',
-            marginTop: '24px',
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-          }}
-          elevation={7}
-        >
-
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="List URL"
-            inputProps={{ 'aria-label': 'list URL' }}
-            value={url}
-          />
-
-          <IconButton href={url} target="_blank" sx={{ p: '10px' }} aria-label="preview">
-            <VisibilityIcon />
-          </IconButton>
-
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-
-          <IconButton
-            color="primary"
-            sx={{ p: '10px' }}
-            aria-label="copy to clipboard"
-            onClick={copy}
-          >
-            <ContentCopyIcon />
-          </IconButton>
-        </Paper>
+        <ModalInput
+          url={url}
+          copy={copy}
+        />
 
         {openAlert && (
-          <Paper elevation={7}>
-            <Alert
-              action={(
-                <IconButton
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => {
-                    setOpenAlert(false);
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              )}
-              sx={{ mb: 2 }}
-            >
-              Copied!
-            </Alert>
-          </Paper>
+          <ModalAlert onOpen={setOpenAlert} />
         )}
       </Box>
     </Modal>

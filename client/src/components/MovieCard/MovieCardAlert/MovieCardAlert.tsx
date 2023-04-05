@@ -3,13 +3,18 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { FC } from 'react';
+import { CARD_ACTION } from '../../typedefs/typedefs';
 
 interface Props {
+  cardAction: CARD_ACTION;
   onChangeAlert: () => void;
 }
 
 export const MovieCardAlert: FC<Props> = (props) => {
-  const { onChangeAlert } = props;
+  const {
+    cardAction,
+    onChangeAlert,
+  } = props;
 
   return (
     <Box sx={{
@@ -32,7 +37,7 @@ export const MovieCardAlert: FC<Props> = (props) => {
           )}
         sx={{ mb: 2 }}
       >
-        Movie was added!
+        {`Movie was ${cardAction === CARD_ACTION.ActionAdded ? 'added' : 'delete'}`}
       </Alert>
     </Box>
   );

@@ -30,7 +30,8 @@ export const App: FC = () => {
   const { state } = useContext(AppContext);
   const httpLink = new HttpLink({ uri: 'http://localhost:4000/api' });
   const localeMiddleware = new ApolloLink((operation, forward) => {
-    const customHeaders = 'headers' in operation.getContext() ? operation.getContext().headers : {};
+    const getContext = operation.getContext();
+    const customHeaders = getContext.headers ? getContext.headers : {};
 
     operation.setContext({
       headers: {

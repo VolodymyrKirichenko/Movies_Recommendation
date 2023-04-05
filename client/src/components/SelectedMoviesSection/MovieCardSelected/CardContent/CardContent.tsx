@@ -26,9 +26,7 @@ export const CardContentFile: FC<Props> = (props) => {
 
       <Box sx={{ display: 'flex', p: 2 }}>
         <Typography variant="subtitle1" component="div">
-          Vote average:
-          {' '}
-          {movie.voteAverage}
+          {`Vote average: ${movie.voteAverage}`}
         </Typography>
 
         <Typography variant="subtitle1" color="text.secondary" component="div">

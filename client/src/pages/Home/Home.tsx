@@ -1,17 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import {
-  Box,
-  Grid,
-  Paper,
-  Stack,
-  Typography,
+  Box, Grid, Paper, Stack, Typography,
 } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useQuery } from '@apollo/client';
 import Pagination from '@mui/material/Pagination';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import { MOVIES_QUERY } from './queries';
-import { Movie, MoviesFilterInput } from '../../components/typedefs/typedefs';
+import { CARD_ACTION, Movie, MoviesFilterInput } from '../../components/typedefs/typedefs';
 import { useMovie } from '../../hooks/useMovie';
 import { SelectedMoviesSection } from '../../components/SelectedMoviesSection/SelectedMoviesSection';
 import { useFilters } from '../../hooks/useFilters';
@@ -28,6 +24,8 @@ export const Home: FC = () => {
     selectedMovies,
     handleChangeAlert,
   } = useMovie();
+
+  const [cardAction, setCardAction] = useState<CARD_ACTION>(CARD_ACTION.ActionAdded);
 
   const handleChange = (event: React.ChangeEvent<unknown>, selectedPage: number) => {
     setPage(selectedPage);
@@ -57,6 +55,7 @@ export const Home: FC = () => {
           <Paper elevation={3}>
             {openAlert && (
               <MovieCardAlert
+                cardAction={cardAction}
                 onChangeAlert={handleChangeAlert}
               />
             )}
@@ -83,6 +82,7 @@ export const Home: FC = () => {
                         onCardSelect={selectMovie}
                         isPreviewMode
                         onChangeAlert={handleChangeAlert}
+                        onCardAction={setCardAction}
                       />
                     </Grid>
                   ))}

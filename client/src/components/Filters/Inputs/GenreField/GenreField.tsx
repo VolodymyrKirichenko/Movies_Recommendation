@@ -3,8 +3,18 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { FC } from 'react';
+import { Genre } from '../../../typedefs/typedefs';
 
-export const GenreField = ({ data }: any) => {
+interface Props {
+  data: {
+    genres: Genre[];
+  };
+}
+
+export const GenreField: FC<Props> = (props) => {
+  const { data } = props;
+
   return (
     <Field
       name="genre"
@@ -18,7 +28,7 @@ export const GenreField = ({ data }: any) => {
             label="Genre"
             {...input}
           >
-            {data.genres.map(({ name, id }: {name: number, id: number}) => (
+            {data.genres.map(({ name, id }) => (
               <MenuItem key={id} value={id}>
                 {name}
               </MenuItem>

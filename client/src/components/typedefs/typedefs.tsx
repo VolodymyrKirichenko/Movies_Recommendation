@@ -19,10 +19,15 @@ export interface MoviesFilterInput {
   page: number,
   sortBy: string,
   sortDirection: string,
-  includeAdult: boolean
-  year: number
-  primaryReleaseYear: number
-  genre: number
+  includeAdult: boolean,
+  year: number,
+  primaryReleaseYear: number,
+  genre: number,
+}
+
+export enum CARD_ACTION {
+  ActionAdded = 'Added',
+  ActionDelete = 'Delete',
 }
 
 export interface InitialValues {

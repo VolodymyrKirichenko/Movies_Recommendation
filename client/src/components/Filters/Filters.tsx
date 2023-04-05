@@ -2,6 +2,7 @@ import { Form } from 'react-final-form';
 import Box from '@mui/material/Box';
 import { useQuery } from '@apollo/client';
 import { Typography } from '@mui/material';
+import { InitialValues, MoviesFilterInput } from '../typedefs/typedefs';
 import { GENRES_QUERY } from './queries';
 import { YearField } from './Inputs/YearField/YearField';
 import { ReleaseYearField } from './Inputs/ReleaseYearField/ReleaseYearField';
@@ -10,11 +11,10 @@ import { AdultField } from './Inputs/AdultField/AdultField';
 import { SortField } from './Inputs/SortField/SortField';
 import { SortDirectionField } from './Inputs/SortDirectionField/SortDirectionField';
 import { SubmitField } from './Inputs/SubmitField/SubmitField';
-// import { InitialValues, MoviesFilterInput } from '../typedefs/typedefs';
 
 export const Filters = ({ onSubmit, initialValues }: {
-  onSubmit: (data: any) => void,
-  initialValues: any
+  onSubmit: (data: MoviesFilterInput) => void,
+  initialValues: InitialValues,
 }) => {
   const { loading, data } = useQuery(GENRES_QUERY);
 

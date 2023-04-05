@@ -10,20 +10,20 @@ export const useFilters = () => {
   });
 
   const setPage = useCallback((page: number) => {
-    setFilter({
-      ...filter,
+    setFilter((prevState) => ({
+      ...prevState,
       page,
-    });
-  }, [filter]);
+    }));
+  }, []);
 
   const setFiltering = useCallback((filterFields: any) => {
-    setFilter({
-      ...filter,
+    setFilter((prevState) => ({
+      ...prevState,
       ...filterFields,
       year: Number(filterFields.year),
       primaryReleaseYear: Number(filterFields.primaryReleaseYear),
-    });
-  }, [filter]);
+    }));
+  }, []);
 
   return {
     filter,

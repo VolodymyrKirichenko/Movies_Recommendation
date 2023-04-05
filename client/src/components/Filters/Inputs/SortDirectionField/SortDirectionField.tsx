@@ -21,7 +21,6 @@ export const SortDirectionField = () => {
           >
             <FormControlLabel value={SORT_DIRECTION.ASC} control={<Radio />} label="asc" />
             <FormControlLabel value={SORT_DIRECTION.DESC} control={<Radio />} label="desc" />
-
           </RadioGroup>
         </FormControl>
       )}

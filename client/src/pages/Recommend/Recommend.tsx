@@ -32,11 +32,12 @@ export const Recommend: FC = () => {
     const title = searchParams.get('title');
 
     setParams({
-      ids: ids ? ids.split(',').map((id) => Number(id)) : [],
+      ids: ids !== null
+        ? ids.split(',').map((id) => Number(id))
+        : [],
       title,
     });
   }, [searchParams]);
-  // console.log(data);
 
   return (
     <Box sx={{ height: '100%' }}>

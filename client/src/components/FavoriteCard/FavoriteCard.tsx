@@ -22,9 +22,7 @@ interface Props {
 }
 
 export const FavoriteCard: FC<Props> = (props) => {
-  const {
-    movie, onDelete
-  } = props;
+  const { movie, onDelete } = props;
 
   return (
     <Card sx={{ maxWidth: 200, height: 400, position: 'relative' }}>

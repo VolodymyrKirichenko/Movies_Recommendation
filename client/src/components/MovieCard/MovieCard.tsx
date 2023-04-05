@@ -2,7 +2,7 @@ import { Card } from '@mui/material';
 import React, { FC, useCallback } from 'react';
 import { CardMenuData } from './CardMenuData/CardMenuData';
 import { useLocalStorage } from '../../hooks/useLocaleStorage';
-import { Movie } from '../typedefs/typedefs';
+import { CARD_ACTION, Movie } from '../typedefs/typedefs';
 import { CardMediaFile } from './CardMedia/CardMedia';
 import { CardInfo } from './CardInfo/CardInfo';
 
@@ -11,6 +11,7 @@ interface Props {
   onCardSelect: (movie: Movie) => void,
   isPreviewMode: boolean,
   onChangeAlert?: () => void;
+  onCardAction?: (action: CARD_ACTION) => void;
 }
 
 export const MovieCard: FC<Props> = (props) => {
@@ -19,6 +20,7 @@ export const MovieCard: FC<Props> = (props) => {
     onCardSelect,
     isPreviewMode,
     onChangeAlert,
+    onCardAction,
   } = props;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -26,27 +28,38 @@ export const MovieCard: FC<Props> = (props) => {
     'movies_favorite',
     [],
   );
-  // const [isRemove, setIsRemove] = useState(false);
 
-  const isFilmAlreadyAdded = useCallback((m: Movie) => {
-    return favoriteMovies.some((f) => f.id === m.id);
-  }, [favoriteMovies]);
+  const isFilmAlreadyAdded = useCallback(() => {
+    return favoriteMovies.some((f) => f.id === movie.id);
+  }, [favoriteMovies, movie.id]);
 
   const handleSelectMovie = useCallback((film: Movie) => {
-    if (!isFilmAlreadyAdded(film)) {
+    if (!isFilmAlreadyAdded()) {
       addToFavoriteMovies(film);
+
+      if (onCardAction) {
+        onCardAction(CARD_ACTION.ActionAdded);
+      }
 
       if (onChangeAlert) {
         onChangeAlert();
       }
     }
-  }, [addToFavoriteMovies, onChangeAlert, isFilmAlreadyAdded]);
+  }, [isFilmAlreadyAdded, addToFavoriteMovies, onCardAction, onChangeAlert]);
 
   const handleDelete = useCallback(() => {
-    if (isFilmAlreadyAdded(movie)) {
+    if (isFilmAlreadyAdded()) {
       removeMovie(movie.id);
+
+      if (onCardAction) {
+        onCardAction(CARD_ACTION.ActionDelete);
+      }
+
+      if (onChangeAlert) {
+        onChangeAlert();
+      }
     }
-  }, [isFilmAlreadyAdded, movie, removeMovie]);
+  }, [isFilmAlreadyAdded, movie, onCardAction, onChangeAlert, removeMovie]);
 
   return (
     <Card sx={{ maxWidth: 200, height: 400, position: 'relative' }}>
@@ -55,7 +68,7 @@ export const MovieCard: FC<Props> = (props) => {
           movie={movie}
           onCardSelect={onCardSelect}
           onSelectMovie={handleSelectMovie}
-          isAdded={isFilmAlreadyAdded}
+          isMovieAdded={isFilmAlreadyAdded}
           onDeleteCard={handleDelete}
         />
       )}

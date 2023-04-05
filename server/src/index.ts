@@ -1,21 +1,27 @@
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
+import { Request } from 'express';
 import * as http from 'http';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 
 import { typeDefs } from './schema';
-import movies from './event.resolver';
+import { resolvers } from './resolvers';
 
 const api = async () => {
   const app = express();
   const httpServer = http.createServer(app);
 
+  const context = ({req}: { req: Request}) => ({
+    locale: req?.headers?.locale || 'en-US'
+  });
+
   const server = new ApolloServer({
     typeDefs,
-    resolvers: { Query: { movies } },
+    resolvers,
     csrfPrevention: true,
     cache: 'bounded',
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    context
   });
 
   const graphqlSendBoxUrl = ['https://studio.apollographql.com'];

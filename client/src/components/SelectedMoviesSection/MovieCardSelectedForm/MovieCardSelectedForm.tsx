@@ -57,7 +57,7 @@ export const MovieCardSelectedForm: FC<Props> = (props) => {
             />
 
             {(errors?.listName && isClick) && (
-            <Typography color="error">{errors.listName}</Typography>
+              <Typography color="error">{errors.listName}</Typography>
             )}
 
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

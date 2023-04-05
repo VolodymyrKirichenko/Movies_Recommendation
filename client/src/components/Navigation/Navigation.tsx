@@ -1,5 +1,5 @@
 import {
-  FC, useState, useContext, useCallback,
+  FC, useState, useContext, useCallback, useMemo,
 } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -21,7 +21,7 @@ import {
   ListItemButton,
 } from '@mui/material';
 import { AppContext } from '../../context/appContext/appContext';
-import { LOCALES } from '../../context/appContext/const';
+import { SelectOfTranslation } from './SelectOfTranslation/SelectOfTranslation';
 
 export const Navigation: FC = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -34,7 +34,7 @@ export const Navigation: FC = () => {
     });
   }, [dispatch]);
 
-  const list = () => (
+  const list = useMemo(() => (
     <Box
       sx={{ width: 250 }}
       role="presentation"
@@ -52,7 +52,7 @@ export const Navigation: FC = () => {
         </Link>
       </List>
     </Box>
-  );
+  ), []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -77,24 +77,22 @@ export const Navigation: FC = () => {
             </Typography>
           </Link>
 
-          <Box>
-            {state.locale}
-            <Button
-              disabled={state.locale === LOCALES.ENGLISH}
-              sx={{ my: 2, color: 'white' }}
-              onClick={() => setLanguage(LOCALES.ENGLISH)}
-            >
-              ENGLISH
-            </Button>
-
-            <Button
-              disabled={state.locale === LOCALES.UKRANIAN}
-              sx={{ my: 2, color: 'white' }}
-              onClick={() => setLanguage(LOCALES.UKRANIAN)}
-            >
-              Українська
-            </Button>
-          </Box>
+          {/* <Box> */}
+          {/*  {state.locale} */}
+          {/*  {languageList.map((language) => ( */}
+          {/*    <Button */}
+          {/*      disabled={state.locale === language} */}
+          {/*      sx={{ my: 2, color: 'white' }} */}
+          {/*      onClick={() => setLanguage(language)} */}
+          {/*    > */}
+          {/*      {language} */}
+          {/*    </Button> */}
+          {/*  ))} */}
+          {/* </Box> */}
+          <SelectOfTranslation
+            state={state}
+            onChangeLanguage={setLanguage}
+          />
 
           <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
             <Button
@@ -113,7 +111,7 @@ export const Navigation: FC = () => {
         open={isDrawerOpen}
         onClose={() => setDrawerOpen(false)}
       >
-        {list()}
+        {list}
       </Drawer>
     </Box>
   );

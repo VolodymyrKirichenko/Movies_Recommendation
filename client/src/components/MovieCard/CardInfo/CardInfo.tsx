@@ -20,6 +20,7 @@ interface Props {
 
 export const CardInfo: FC<Props> = (props) => {
   const { isPreviewMode, movie } = props;
+  const isGenresArray = Array.isArray(movie.genres);
 
   return (
     <CardInfoStyle>
@@ -28,7 +29,7 @@ export const CardInfo: FC<Props> = (props) => {
           {movie.title}
         </Typography>
 
-        {!isPreviewMode && Array.isArray(movie.genres) ? (
+        {!isPreviewMode && isGenresArray ? (
           <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
             {movie.genres.map((item) => item.name).join(', ')}
           </Typography>

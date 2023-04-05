@@ -9,13 +9,14 @@ import { CardMenu } from '../CardMenu/CardMenu';
 
 const MenuItems = styled(MenuItem)(() => ({
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-start',
+  gap: 10,
 }));
 
 interface Props {
   movie: Movie,
   onDeleteCard: () => void,
-  isAdded: (movie: Movie) => boolean;
+  isMovieAdded: () => boolean;
   onCardSelect: (movie: Movie) => void,
   onSelectMovie: (movie: Movie) => void;
 }
@@ -23,7 +24,7 @@ interface Props {
 export const CardMenuData: FC<Props> = (props) => {
   const {
     movie,
-    isAdded,
+    isMovieAdded,
     onCardSelect,
     onDeleteCard,
     onSelectMovie,
@@ -37,7 +38,7 @@ export const CardMenuData: FC<Props> = (props) => {
           Add to list
         </MenuItems>
 
-        {!isAdded(movie) ? (
+        {!isMovieAdded() ? (
           <MenuItems onClick={() => onSelectMovie(movie)}>
             <FavoriteBorderIcon />
             Favorite
@@ -45,7 +46,7 @@ export const CardMenuData: FC<Props> = (props) => {
         ) : (
           <MenuItems onClick={onDeleteCard}>
             <FavoriteIcon />
-            Favoritess
+            Favorite
           </MenuItems>
         )}
       </Box>

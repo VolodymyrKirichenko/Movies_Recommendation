@@ -1,16 +1,11 @@
 import gql from 'graphql-tag';
 
-export const EventSchema = gql`
+export const MovieByIdsSchema = gql`
     type Query {
-        movies(page: Int): Movies
+        moviesByIds(ids: [Int]): [MovieByIds]
     }
-    
-    type Genre {
-        id: Int!
-        name: String
-    }
-    
-    type Movie {
+
+    type MovieByIds {
         id: ID!
         title: String!
         originalTitle: String
@@ -25,12 +20,6 @@ export const EventSchema = gql`
         voteCount: Int
         video: Boolean
         voteAverage: Float
-    }
-    
-    type Movies {
-        page: Int!
-        totalResults: Int!
-        totalPages: Int!
-        results: [Movie!]!
+        runtime: Int
     }
 `;

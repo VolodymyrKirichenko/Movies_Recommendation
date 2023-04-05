@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/VolodymyrKirichenko/ListOfMovies.git"
+    "url": "git+ssh://git@github.com:VolodymyrKirichenko/Movies_Recommendation.git"
   },
   "author": "volodymyr",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VolodymyrKirichenko/ListOfMovies/issues"
+    "url": "https://github.com/VolodymyrKirichenko/Movies_Recommendation/issues"
   },
-  "homepage": "https://github.com/VolodymyrKirichenko/ListOfMovies#readme",
+  "homepage": "https://github.com/VolodymyrKirichenko/Movies_Recommendation#readme",
   "devDependencies": {
     "@graphql-codegen/cli": "2.9.1",
     "@graphql-codegen/introspection": "2.2.0",

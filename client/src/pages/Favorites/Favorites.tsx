@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import {
   Box, Grid, Paper, Typography,
 } from '@mui/material';
@@ -22,9 +22,9 @@ export const Favorites: FC = () => {
     [],
   );
 
-  const handleDelete = (movieId: string) => {
+  const handleDelete = useCallback((movieId: string) => {
     removeMovie(movieId);
-  };
+  }, [removeMovie]);
 
   return (
     <Box sx={{ height: '100%' }}>

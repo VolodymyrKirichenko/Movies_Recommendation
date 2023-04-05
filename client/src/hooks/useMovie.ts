@@ -37,7 +37,7 @@ export const useMovie = () => {
     }
 
     return () => clearTimeout(timer);
-  }, [openAlert, setOpenAlert]);
+  }, [openAlert]);
 
   return {
     openAlert,
