@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/client';
 import { Typography } from '@mui/material';
 import { InitialValues, MoviesFilterInput } from '../typedefs/typedefs';
 import { GENRES_QUERY } from './queries';
-import { YearField } from './Inputs/YearField/YearField';
 import { ReleaseYearField } from './Inputs/ReleaseYearField/ReleaseYearField';
 import { GenreField } from './Inputs/GenreField/GenreField';
 import { AdultField } from './Inputs/AdultField/AdultField';
@@ -31,10 +30,6 @@ export const Filters = ({ onSubmit, initialValues }: {
           <form onSubmit={handleSubmit}>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box mr={3}>
-                  <YearField />
-                </Box>
-
                 <Box mr={3}>
                   <ReleaseYearField />
                 </Box>

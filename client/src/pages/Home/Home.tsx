@@ -1,19 +1,15 @@
 import React, {
-  FC, useCallback, useMemo, useState,
+  FC, useCallback, useState,
 } from 'react';
 import {
   Box,
   Grid,
   Paper,
-  Stack,
-  Hidden,
   Typography,
-  Drawer, Button,
 } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
 import { useQuery } from '@apollo/client';
-import Pagination from '@mui/material/Pagination';
-import { GENRES_QUERY } from '../../components/Filters/queries';
+import { FilterMenu } from '../../components/Filters/FilterMenu/FilterMenu';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import { MOVIES_QUERY } from './queries';
 import { CARD_ACTION, Movie, MoviesFilterInput } from '../../components/typedefs/typedefs';
@@ -22,7 +18,7 @@ import { SelectedMoviesSection } from '../../components/SelectedMoviesSection/Se
 import { useFilters } from '../../hooks/useFilters';
 import { Filters } from '../../components/Filters/Filters';
 import { MovieCardAlert } from '../../components/MovieCard/MovieCardAlert/MovieCardAlert';
-import { FilterList } from '../../components/Filters/FiltersList/FiltersList';
+import { Paginator } from '../../components/Paginator/Paginator';
 
 export const Home: FC = () => {
   const { filter, setPage, setFiltering } = useFilters();
@@ -34,49 +30,33 @@ export const Home: FC = () => {
     selectedMovies,
     handleChangeAlert,
   } = useMovie();
-  const { data: genresData } = useQuery(GENRES_QUERY);
 
   const [cardAction, setCardAction] = useState<CARD_ACTION>(CARD_ACTION.ActionAdded);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
-  const handleChange = (event: React.ChangeEvent<unknown>, selectedPage: number) => {
+  const handleChangePage = (event: React.ChangeEvent<unknown>, selectedPage: number) => {
     setPage(selectedPage);
   };
 
-  const pageMovies = movieData?.movies?.totalResults.length < 500
-    ? movieData.movies.totalResults
-    : 500;
+  const handleChangeDrawer = () => {
+    setDrawerOpen((prevDrawer) => !prevDrawer);
+  };
 
   const onSubmit = useCallback((data: MoviesFilterInput) => {
     setFiltering(data);
     setDrawerOpen(false);
   }, [setFiltering]);
 
-  const handleChangeDrawer = () => {
-    setDrawerOpen((prevDrawer) => !prevDrawer);
-  };
-
-  const list = useMemo(() => (
-    <FilterList
-      filter={filter}
-      genresData={genresData}
-      onSubmit={onSubmit}
-    />
-  ), [filter, genresData, onSubmit]);
-
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Hidden only={['lg', 'xl', 'md']}>
-            <Button
-              variant="contained"
-              onClick={handleChangeDrawer}
-              sx={{ mr: 2 }}
-            >
-              Filters
-            </Button>
-          </Hidden>
+          <FilterMenu
+            filter={filter}
+            onSubmit={onSubmit}
+            isDrawerOpen={isDrawerOpen}
+            onChangeDrawer={handleChangeDrawer}
+          />
 
           <Paper elevation={3} sx={{ display: { xs: 'none', md: 'block' } }}>
             <Filters
@@ -125,15 +105,11 @@ export const Home: FC = () => {
               )}
             </Box>
 
-            <Box mt={2} pb={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Stack spacing={2}>
-                <Pagination
-                  count={pageMovies}
-                  page={filter.page}
-                  onChange={handleChange}
-                />
-              </Stack>
-            </Box>
+            <Paginator
+              filter={filter}
+              movieData={movieData}
+              onChangePage={handleChangePage}
+            />
           </Paper>
         </Grid>
 
@@ -144,14 +120,6 @@ export const Home: FC = () => {
           />
         </Grid>
       </Grid>
-
-      <Drawer
-        anchor="top"
-        open={isDrawerOpen}
-        onClose={handleChangeDrawer}
-      >
-        {list}
-      </Drawer>
     </Box>
   );
 };

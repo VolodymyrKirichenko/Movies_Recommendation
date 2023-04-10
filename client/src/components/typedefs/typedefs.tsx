@@ -15,14 +15,21 @@ export interface Movie {
   overview: string;
 }
 
+export interface Movies {
+  page: number;
+  totalResults: number;
+  totalPages: number;
+  results: Movie[];
+}
+
 export interface MoviesFilterInput {
   page: number,
   sortBy: string,
   sortDirection: string,
   includeAdult: boolean,
-  year: number,
-  primaryReleaseYear: number,
-  genre: number,
+  year?: number,
+  primaryReleaseYear?: number,
+  genre?: number,
 }
 
 export enum CARD_ACTION {

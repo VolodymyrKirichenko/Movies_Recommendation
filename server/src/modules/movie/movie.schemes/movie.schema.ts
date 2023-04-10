@@ -6,11 +6,10 @@ export const MovieSchema = gql`
     }
 
     input MoviesFilterInput {
-        page: Int,
-        sortBy: String,
-        sortDirection: SORT_DIRECTION,
+        page: Int
+        sortBy: String
+        sortDirection: SORT_DIRECTION
         includeAdult: Boolean
-        year: Int
         primaryReleaseYear: Int
         genre: Int
     }

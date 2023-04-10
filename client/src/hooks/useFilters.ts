@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { SORT_DIRECTION } from '../components/Filters/variables';
+import { MoviesFilterInput } from '../components/typedefs/typedefs';
 
 export const useFilters = () => {
   const [filter, setFilter] = useState({
@@ -16,12 +17,17 @@ export const useFilters = () => {
     }));
   }, []);
 
-  const setFiltering = useCallback((filterFields: any) => {
+  const setFiltering = useCallback((filterFields: MoviesFilterInput) => {
+    const defaultYear = new Date().getFullYear();
+    // const defaultPrimaryReleaseYear = defaultYear - 1;
+
     setFilter((prevState) => ({
       ...prevState,
       ...filterFields,
-      year: Number(filterFields.year),
-      primaryReleaseYear: Number(filterFields.primaryReleaseYear),
+      primaryReleaseYear: filterFields.primaryReleaseYear
+      && !Number.isNaN(filterFields.primaryReleaseYear)
+        ? Number(filterFields.primaryReleaseYear)
+        : defaultYear,
     }));
   }, []);
 

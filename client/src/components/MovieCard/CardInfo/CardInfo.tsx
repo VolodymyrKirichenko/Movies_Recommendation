@@ -43,7 +43,7 @@ export const CardInfo: FC<Props> = (props) => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography
           variant="subtitle1"
-          sx={{ 'font-size': 12 }}
+          sx={{ fontSize: 12 }}
           gutterBottom
         >
           {movie.releaseDate}

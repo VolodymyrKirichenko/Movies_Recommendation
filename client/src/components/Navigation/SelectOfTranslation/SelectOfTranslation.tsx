@@ -1,4 +1,6 @@
-import { FC, useMemo, useState } from 'react';
+import {
+  FC, useCallback, useMemo, useState,
+} from 'react';
 import {
   Box,
   InputLabel,
@@ -23,9 +25,9 @@ export const SelectOfTranslation: FC<Props> = (props) => {
 
   const [speech, setSpeech] = useState('');
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = useCallback((event: SelectChangeEvent) => {
     setSpeech(event.target.value);
-  };
+  }, []);
 
   return (
     <Box sx={{ minWidth: 120 }}>

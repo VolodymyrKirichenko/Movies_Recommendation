@@ -15,7 +15,6 @@ export interface MoviesFilterInput {
   sortBy: string;
   sortDirection: SORT_DIRECTION;
   includeAdult: boolean;
-  year: number;
   primaryReleaseYear: number;
   genre: number;
 }

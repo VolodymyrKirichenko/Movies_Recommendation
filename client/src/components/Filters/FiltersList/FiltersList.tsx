@@ -1,25 +1,25 @@
 import { FC } from 'react';
 import {
-  Box,
+  Box, Hidden,
   List,
   ListItem,
-  ListItemButton,
-  ListItemText,
 } from '@mui/material';
 import { Form } from 'react-final-form';
+import { SortDirectionField } from '../Inputs/SortDirectionField/SortDirectionField';
 import { AllGenres } from '../Inputs/AllGenres/AllGenres';
 import { AdultField } from '../Inputs/AdultField/AdultField';
-import { MoviesFilterInput } from '../../typedefs/typedefs';
-import { YearField } from '../Inputs/YearField/YearField';
+import { Genre, MoviesFilterInput } from '../../typedefs/typedefs';
 import { ReleaseYearField } from '../Inputs/ReleaseYearField/ReleaseYearField';
 import { GenreField } from '../Inputs/GenreField/GenreField';
 import { SortField } from '../Inputs/SortField/SortField';
 import { SubmitField } from '../Inputs/SubmitField/SubmitField';
 
 interface Props {
-  filter: any,
+  filter: MoviesFilterInput,
   onSubmit: (data: MoviesFilterInput) => void,
-  genresData: any,
+  genresData: {
+    genres: Genre[];
+  }
 }
 
 export const FilterList: FC<Props> = (props) => {
@@ -42,38 +42,59 @@ export const FilterList: FC<Props> = (props) => {
       }}
       >
         <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemText primary="Filters" />
-          </ListItemButton>
-        </ListItem>
-
-        <ListItem disablePadding>
           <Form
             onSubmit={onSubmit}
             initialValues={filter}
             render={({ handleSubmit }) => (
               <form onSubmit={handleSubmit}>
-                <Box>
+                <Box sx={{ mb: 2 }}>
                   <AllGenres
                     data={genresData}
                     onSubmit={onSubmit}
                   />
                 </Box>
 
-                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                  <SortField />
+                <Box sx={{
+                  gap: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+                >
+                  <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                    <SortField />
 
-                  <GenreField data={genresData} />
+                    <GenreField data={genresData} />
 
-                  <YearField />
+                    <ReleaseYearField />
+                  </Box>
 
-                  <ReleaseYearField />
+                  <Hidden only={['xs']}>
+                    <SortDirectionField />
+                  </Hidden>
                 </Box>
 
-                <Box sx={{ m: 1, display: 'flex', gap: 5 }}>
-                  <SubmitField />
+                <Box sx={{
+                  m: 1,
+                  display: 'flex',
+                  gap: 5,
+                  justifyContent: 'space-between',
+                }}
+                >
+                  <Box sx={{
+                    gap: 5,
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                  >
+                    <SubmitField />
 
-                  <AdultField />
+                    <AdultField />
+                  </Box>
+
+                  <Box sx={{ display: { sm: 'none', md: 'none' } }}>
+                    <SortDirectionField />
+                  </Box>
                 </Box>
               </form>
             )}
