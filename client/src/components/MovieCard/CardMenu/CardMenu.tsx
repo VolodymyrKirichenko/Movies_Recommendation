@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Box, IconButton, Menu } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import cn from 'classnames';
 
 interface Props {
   children: JSX.Element,
@@ -34,8 +35,10 @@ export const CardMenu: FC<Props> = (props) => {
         }}
         aria-label="more"
         id="long-button"
-        aria-controls={open ? 'long-menu' : undefined}
-        aria-expanded={open ? 'true' : undefined}
+        aria-controls={cn({
+          'long-menu': open,
+        })}
+        aria-expanded={open}
         aria-haspopup="true"
         onClick={handleClick}
       >

@@ -27,8 +27,6 @@ export const SelectOfTranslation: FC<Props> = (props) => {
     setSpeech(event.target.value);
   };
 
-  console.log(speech);
-
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth size="small">

@@ -62,7 +62,12 @@ export const MovieCard: FC<Props> = (props) => {
   }, [isFilmAlreadyAdded, movie, onCardAction, onChangeAlert, removeMovie]);
 
   return (
-    <Card sx={{ maxWidth: 200, height: 400, position: 'relative' }}>
+    <Card sx={{
+      maxWidth: 200,
+      height: 400,
+      position: 'relative',
+    }}
+    >
       {isPreviewMode && (
         <CardMenuData
           movie={movie}

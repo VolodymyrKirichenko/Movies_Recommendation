@@ -77,18 +77,6 @@ export const Navigation: FC = () => {
             </Typography>
           </Link>
 
-          {/* <Box> */}
-          {/*  {state.locale} */}
-          {/*  {languageList.map((language) => ( */}
-          {/*    <Button */}
-          {/*      disabled={state.locale === language} */}
-          {/*      sx={{ my: 2, color: 'white' }} */}
-          {/*      onClick={() => setLanguage(language)} */}
-          {/*    > */}
-          {/*      {language} */}
-          {/*    </Button> */}
-          {/*  ))} */}
-          {/* </Box> */}
           <SelectOfTranslation
             state={state}
             onChangeLanguage={setLanguage}
