@@ -25,7 +25,6 @@ export const Home: FC = () => {
     selectedMovies,
     handleChangeAlert,
   } = useMovie();
-
   const [cardAction, setCardAction] = useState<CARD_ACTION>(CARD_ACTION.ActionAdded);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
