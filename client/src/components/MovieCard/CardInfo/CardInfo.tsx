@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Box, CardContent, Typography } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Movie } from '../../typedefs/typedefs';
 
 const CardInfoStyle = styled(CardContent)(({ theme }) => ({
@@ -20,7 +20,14 @@ interface Props {
 
 export const CardInfo: FC<Props> = (props) => {
   const { isPreviewMode, movie } = props;
-  const isGenresArray = Array.isArray(movie.genres);
+
+  const getGenres = useMemo(() => {
+    if (!isPreviewMode && Array.isArray(movie.genres)) {
+      return movie.genres.map((item) => item.name).join(', ');
+    }
+
+    return typeof movie.genres === 'string' && movie.genres;
+  }, [isPreviewMode, movie.genres]);
 
   return (
     <CardInfoStyle>
@@ -30,9 +37,7 @@ export const CardInfo: FC<Props> = (props) => {
         </Typography>
 
         <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
-          {!isPreviewMode && isGenresArray
-            ? movie.genres.map((item) => item.name).join(', ')
-            : typeof movie.genres === 'string' && movie.genres}
+          {getGenres}
         </Typography>
       </Box>
 

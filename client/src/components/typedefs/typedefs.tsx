@@ -12,7 +12,7 @@ export interface Movie {
   image: string;
   title: string;
   releaseDate: string;
-  genres: Genre[];
+  genres: Genre[] | string;
   runtime: string;
   genreIds: number[];
   voteAverage: number;

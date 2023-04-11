@@ -19,14 +19,16 @@ export const useFilters = () => {
 
   const setFiltering = useCallback((filterFields: MoviesFilterInput) => {
     const defaultYear = new Date().getFullYear();
+    const { primaryReleaseYear } = filterFields;
+    const ternaryCondition = primaryReleaseYear && !Number.isNaN(primaryReleaseYear);
+    const filteredPrimaryReleaseYear = ternaryCondition
+      ? Number(primaryReleaseYear)
+      : defaultYear;
 
     setFilter((prevState) => ({
       ...prevState,
       ...filterFields,
-      primaryReleaseYear: filterFields.primaryReleaseYear
-      && !Number.isNaN(filterFields.primaryReleaseYear)
-        ? Number(filterFields.primaryReleaseYear)
-        : defaultYear,
+      primaryReleaseYear: filteredPrimaryReleaseYear,
     }));
   }, []);
 

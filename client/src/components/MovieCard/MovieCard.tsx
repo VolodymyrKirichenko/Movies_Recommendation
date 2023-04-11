@@ -24,7 +24,7 @@ export const MovieCard: FC<Props> = (props) => {
   } = props;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [favoriteMovies, setFavoriteMovies, addToFavoriteMovies, removeMovie] = useLocalStorage(
+  const [favoriteMovies, _, addToFavoriteMovies, removeMovie] = useLocalStorage(
     'movies_favorite',
     [],
   );
