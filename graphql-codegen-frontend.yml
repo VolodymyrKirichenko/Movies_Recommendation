@@ -1,0 +1,18 @@
+overwrite: true
+schema:
+  - "api/src/modules/**/*.schema.ts"
+  - "api/src/modules/legacy/**/*.schema.js"
+  - scalar Upload
+documents:
+  - "api/src/modules/**/*.queries/**.ts"
+  - "api/src/modules/**/*.fragments/**.ts"
+  - "api/src/modules/**/*.subscriptions/**.ts"
+generates:
+  frontend/src/controllers/graphql/generated.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      gqlImport: '@apollo/client#gql'
+      pureMagicComment: true
