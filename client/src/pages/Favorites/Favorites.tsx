@@ -29,7 +29,7 @@ export const Favorites: FC = () => {
   return (
     <Box sx={{ height: '100%' }}>
       <Paper elevation={3} sx={{ padding: 5, minHeight: 'calc(100vh - 70px)' }}>
-        {favoriteMovies.length > 0 ? (
+        {favoriteMovies.length ? (
           <Grid container spacing={2} sx={{ padding: 5 }}>
             {favoriteMovies.map((movie: Movie) => (
               <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>

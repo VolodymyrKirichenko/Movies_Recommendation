@@ -1,5 +1,5 @@
 import { Card } from '@mui/material';
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { CardMenuData } from './CardMenuData/CardMenuData';
 import { useLocalStorage } from '../../hooks/useLocaleStorage';
 import { CARD_ACTION, Movie } from '../typedefs/typedefs';
@@ -29,12 +29,12 @@ export const MovieCard: FC<Props> = (props) => {
     [],
   );
 
-  const isFilmAlreadyAdded = useCallback(() => {
+  const isFilmAlreadyAdded = useMemo(() => {
     return favoriteMovies.some((f) => f.id === movie.id);
   }, [favoriteMovies, movie.id]);
 
   const handleSelectMovie = useCallback((film: Movie) => {
-    if (!isFilmAlreadyAdded()) {
+    if (!isFilmAlreadyAdded) {
       addToFavoriteMovies(film);
 
       if (onCardAction) {
@@ -48,7 +48,7 @@ export const MovieCard: FC<Props> = (props) => {
   }, [isFilmAlreadyAdded, addToFavoriteMovies, onCardAction, onChangeAlert]);
 
   const handleDelete = useCallback(() => {
-    if (isFilmAlreadyAdded()) {
+    if (isFilmAlreadyAdded) {
       removeMovie(movie.id);
 
       if (onCardAction) {

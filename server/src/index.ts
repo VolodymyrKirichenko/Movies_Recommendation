@@ -37,7 +37,7 @@ const api = async () => {
       credentials: true,
     },
     path: '/api',
-  });
+  });``;
 
   await new Promise<void>(
     (resolve) => httpServer.listen({ port }, resolve)

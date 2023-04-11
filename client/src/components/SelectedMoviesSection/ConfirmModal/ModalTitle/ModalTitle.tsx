@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import * as React from 'react';
 
 export const ModalTitle: FC = () => {
   return (

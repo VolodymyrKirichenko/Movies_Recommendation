@@ -1,6 +1,5 @@
 import { Genre, MovieType } from '../typedefs/typedefs';
 import { IMAGE_BASE_PATH } from '../../config/ImageBasePath';
-// const dateFormat = require('dateformat');
 
 export class Movie {
   public id: string;
@@ -43,17 +42,4 @@ export class Movie {
       .filter((genreName: any) => genreName !== '')
       .join(', ');
   }
-
-  // releaseDate(params) {
-  //   try {
-  //     const date = dateFormat(params)
-  //       ? dateFormat(this.movie.release_date, 'paddedShortDate')
-  //       : this.movie.release_date;
-  //
-  //     return date;
-  //   } catch (e) {
-  //     console.error(e);
-  //     return this.movie.release_date;
-  //   }
-  // }
 }

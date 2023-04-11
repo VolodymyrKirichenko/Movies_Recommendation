@@ -28,13 +28,14 @@ export const Recommend: FC = () => {
   } = useQuery(MOVIES_BY_IDS_QUERY, { variables: { ids: params.ids } });
 
   useEffect(() => {
-    const ids = searchParams.get('ids');
+    const idsForParams = searchParams.get('ids');
     const title = searchParams.get('title');
+    const ids = idsForParams !== null
+      ? idsForParams.split(',').map((id) => Number(id))
+      : [];
 
     setParams({
-      ids: ids !== null
-        ? ids.split(',').map((id) => Number(id))
-        : [],
+      ids,
       title,
     });
   }, [searchParams]);

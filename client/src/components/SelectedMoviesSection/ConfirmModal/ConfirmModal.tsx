@@ -33,7 +33,10 @@ interface Props {
 
 export const ConfirmModal: FC<Props> = (props) => {
   const {
-    url, title, onClose, open,
+    url,
+    open,
+    title,
+    onClose,
   } = props;
 
   const [openAlert, setOpenAlert] = useState(false);

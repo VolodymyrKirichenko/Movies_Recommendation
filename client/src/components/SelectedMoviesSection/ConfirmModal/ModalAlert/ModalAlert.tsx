@@ -20,9 +20,7 @@ export const ModalAlert: FC<Props> = (props) => {
             aria-label="close"
             color="inherit"
             size="small"
-            onClick={() => {
-              onOpen(false);
-            }}
+            onClick={() => onOpen(false)}
           >
             <CloseIcon fontSize="inherit" />
           </IconButton>

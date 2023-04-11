@@ -1,61 +1,39 @@
-import { Form } from 'react-final-form';
-import Box from '@mui/material/Box';
-import { useQuery } from '@apollo/client';
-import { Typography } from '@mui/material';
-import { InitialValues, MoviesFilterInput } from '../typedefs/typedefs';
-import { GENRES_QUERY } from './queries';
-import { ReleaseYearField } from './Inputs/ReleaseYearField/ReleaseYearField';
-import { GenreField } from './Inputs/GenreField/GenreField';
-import { AdultField } from './Inputs/AdultField/AdultField';
-import { SortField } from './Inputs/SortField/SortField';
-import { SortDirectionField } from './Inputs/SortDirectionField/SortDirectionField';
-import { SubmitField } from './Inputs/SubmitField/SubmitField';
+import React, { FC } from 'react';
+import { Grid, Paper } from '@mui/material';
+import { FilterMenu } from './FilterMenu/FilterMenu';
+import { FiltersMain } from './FiltersMain/FiltersMain';
+import { MoviesFilterInput } from '../typedefs/typedefs';
 
-export const Filters = ({ onSubmit, initialValues }: {
+interface Props {
+  filter: MoviesFilterInput,
   onSubmit: (data: MoviesFilterInput) => void,
-  initialValues: InitialValues,
-}) => {
-  const { loading, data } = useQuery(GENRES_QUERY);
+  isDrawerOpen: boolean,
+  onChangeDrawer: () => void,
+}
 
-  if (loading) {
-    return <Typography>Loading...</Typography>;
-  }
+export const Filters: FC<Props> = (props) => {
+  const {
+    filter,
+    onSubmit,
+    isDrawerOpen,
+    onChangeDrawer,
+  } = props;
 
   return (
-    <Box sx={{ padding: 2 }}>
-      <Form
+    <Grid item xs={12}>
+      <FilterMenu
+        filter={filter}
         onSubmit={onSubmit}
-        initialValues={initialValues}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box mr={3}>
-                  <ReleaseYearField />
-                </Box>
-
-                <Box mr={3}>
-                  <GenreField data={data} />
-                </Box>
-
-                <AdultField />
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Box mr={3}>
-                  <SortField />
-                </Box>
-
-                <SortDirectionField />
-              </Box>
-            </Box>
-
-            <Box>
-              <SubmitField />
-            </Box>
-          </form>
-        )}
+        isDrawerOpen={isDrawerOpen}
+        onChangeDrawer={onChangeDrawer}
       />
-    </Box>
+
+      <Paper elevation={3} sx={{ display: { xs: 'none', md: 'block' } }}>
+        <FiltersMain
+          onSubmit={onSubmit}
+          initialValues={filter}
+        />
+      </Paper>
+    </Grid>
   );
 };

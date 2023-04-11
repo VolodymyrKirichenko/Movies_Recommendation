@@ -29,15 +29,11 @@ export const CardInfo: FC<Props> = (props) => {
           {movie.title}
         </Typography>
 
-        {!isPreviewMode && isGenresArray ? (
-          <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
-            {movie.genres.map((item) => item.name).join(', ')}
-          </Typography>
-        ) : (
-          <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
-            {typeof movie.genres === 'string' && movie.genres}
-          </Typography>
-        )}
+        <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
+          {!isPreviewMode && isGenresArray
+            ? movie.genres.map((item) => item.name).join(', ')
+            : typeof movie.genres === 'string' && movie.genres}
+        </Typography>
       </Box>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -49,15 +45,12 @@ export const CardInfo: FC<Props> = (props) => {
           {movie.releaseDate}
         </Typography>
 
-        {!isPreviewMode ? (
-          <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
-            {`${movie.runtime}m`}
-          </Typography>
-        ) : (
-          <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
-            {movie.voteAverage}
-          </Typography>
-        )}
+        <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
+          {!isPreviewMode
+            ? `${movie.runtime}m`
+            : `${movie.voteAverage}`
+          }
+        </Typography>
       </Box>
     </CardInfoStyle>
   );

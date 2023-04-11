@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { Button, Drawer, Hidden } from '@mui/material';
 import { useQuery } from '@apollo/client';
 import { MoviesFilterInput } from '../../typedefs/typedefs';
@@ -22,14 +22,6 @@ export const FilterMenu: FC<Props> = (props) => {
 
   const { data: genresData } = useQuery(GENRES_QUERY);
 
-  const list = useMemo(() => (
-    <FilterList
-      filter={filter}
-      genresData={genresData}
-      onSubmit={onSubmit}
-    />
-  ), [filter, genresData, onSubmit]);
-
   return (
     <>
       <Hidden only={['lg', 'xl', 'md']}>
@@ -47,7 +39,11 @@ export const FilterMenu: FC<Props> = (props) => {
         open={isDrawerOpen}
         onClose={onChangeDrawer}
       >
-        {list}
+        <FilterList
+          filter={filter}
+          genresData={genresData}
+          onSubmit={onSubmit}
+        />
       </Drawer>
     </>
   );

@@ -4,12 +4,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { FC } from 'react';
-import { Genre } from '../../../typedefs/typedefs';
+import { Genres } from '../../../typedefs/typedefs';
 
 interface Props {
-  data: {
-    genres: Genre[];
-  };
+  data: Genres;
 }
 
 export const GenreField: FC<Props> = (props) => {

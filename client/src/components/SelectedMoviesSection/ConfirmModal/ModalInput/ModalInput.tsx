@@ -5,7 +5,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Divider from '@mui/material/Divider';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Paper from '@mui/material/Paper';
-import * as React from 'react';
 
 interface Props {
   url: string,

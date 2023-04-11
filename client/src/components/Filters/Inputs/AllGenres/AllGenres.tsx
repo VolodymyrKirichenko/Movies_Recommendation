@@ -2,12 +2,10 @@ import { FC } from 'react';
 import {
   Box, Button, Grid,
 } from '@mui/material';
-import { Genre, MoviesFilterInput } from '../../../typedefs/typedefs';
+import { Genres, MoviesFilterInput } from '../../../typedefs/typedefs';
 
 interface Props {
-  data: {
-    genres: Genre[];
-  },
+  data: Genres,
   onSubmit: (data: MoviesFilterInput) => void;
 }
 

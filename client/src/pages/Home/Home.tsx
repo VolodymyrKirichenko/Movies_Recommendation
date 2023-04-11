@@ -1,24 +1,19 @@
-import React, {
-  FC, useCallback, useState,
-} from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import {
-  Box,
-  Grid,
-  Paper,
-  Typography,
+  Box, Grid, Paper,
 } from '@mui/material';
-import LinearProgress from '@mui/material/LinearProgress';
 import { useQuery } from '@apollo/client';
-import { FilterMenu } from '../../components/Filters/FilterMenu/FilterMenu';
+import { HomeLoader } from './HomeLoader/HomeLoader';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import { MOVIES_QUERY } from './queries';
 import { CARD_ACTION, Movie, MoviesFilterInput } from '../../components/typedefs/typedefs';
 import { useMovie } from '../../hooks/useMovie';
 import { SelectedMoviesSection } from '../../components/SelectedMoviesSection/SelectedMoviesSection';
 import { useFilters } from '../../hooks/useFilters';
-import { Filters } from '../../components/Filters/Filters';
 import { MovieCardAlert } from '../../components/MovieCard/MovieCardAlert/MovieCardAlert';
 import { Paginator } from '../../components/Paginator/Paginator';
+import { HomeError } from './HomeError/HomeError';
+import { Filters } from '../../components/Filters/Filters';
 
 export const Home: FC = () => {
   const { filter, setPage, setFiltering } = useFilters();
@@ -50,21 +45,12 @@ export const Home: FC = () => {
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <FilterMenu
-            filter={filter}
-            onSubmit={onSubmit}
-            isDrawerOpen={isDrawerOpen}
-            onChangeDrawer={handleChangeDrawer}
-          />
-
-          <Paper elevation={3} sx={{ display: { xs: 'none', md: 'block' } }}>
-            <Filters
-              onSubmit={onSubmit}
-              initialValues={filter}
-            />
-          </Paper>
-        </Grid>
+        <Filters
+          filter={filter}
+          onSubmit={onSubmit}
+          isDrawerOpen={isDrawerOpen}
+          onChangeDrawer={handleChangeDrawer}
+        />
 
         <Grid item xs={12} md={8}>
           <Paper elevation={3}>
@@ -76,17 +62,9 @@ export const Home: FC = () => {
             )}
 
             <Box sx={{ flexGrow: 1, padding: 1, height: 'max-content' }}>
-              {loading && (
-                <Box sx={{ width: '100%' }}>
-                  <LinearProgress />
-                </Box>
-              )}
+              {loading && <HomeLoader />}
 
-              {error && (
-                <Typography>
-                  try again
-                </Typography>
-              )}
+              {error && <HomeError />}
 
               {movieData && (
                 <Grid container spacing={1}>

@@ -7,11 +7,15 @@ interface Args {
 }
 
 export const moviesByIds = async (parent: any, { ids }: Args, context: Context) => {
-  return await Promise.all(
-    ids.map(async (id: number) => {
-      const response = await getDetails(id, context.locale);
+  try {
+    return await Promise.all(
+      ids.map(async (id: number) => {
+        const response = await getDetails(id, context.locale);
 
-      return new MovieByIds(response.data);
-    })
-  );
+        return new MovieByIds(response.data);
+      })
+    );
+  } catch (error) {
+    throw new Error('Failed to fetch movie details by ids');
+  }
 };

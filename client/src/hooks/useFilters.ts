@@ -19,7 +19,6 @@ export const useFilters = () => {
 
   const setFiltering = useCallback((filterFields: MoviesFilterInput) => {
     const defaultYear = new Date().getFullYear();
-    // const defaultPrimaryReleaseYear = defaultYear - 1;
 
     setFilter((prevState) => ({
       ...prevState,

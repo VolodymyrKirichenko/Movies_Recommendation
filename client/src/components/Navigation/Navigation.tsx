@@ -1,27 +1,21 @@
 import {
-  FC, useState, useContext, useCallback, useMemo,
+  FC, useState, useContext, useCallback,
 } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
-  List,
   Link,
   AppBar,
-  Drawer,
   Hidden,
   Button,
   Toolbar,
-  ListItem,
   Typography,
   IconButton,
-  ListItemIcon,
-  ListItemText,
-  ListItemButton,
 } from '@mui/material';
 import { AppContext } from '../../context/appContext/appContext';
 import { SelectOfTranslation } from './SelectOfTranslation/SelectOfTranslation';
+import { NavDrawer } from './NavDrawer/NavDrawer';
 
 export const Navigation: FC = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -34,25 +28,9 @@ export const Navigation: FC = () => {
     });
   }, [dispatch]);
 
-  const list = useMemo(() => (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-    >
-      <List>
-        <Link component={RouterLink} to='favorites'>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <FavoriteIcon />
-              </ListItemIcon>
-              <ListItemText primary="Favorites" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-      </List>
-    </Box>
-  ), []);
+  const handleChangeDrawer = useCallback(() => {
+    setDrawerOpen((prevState) => !prevState);
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -60,7 +38,7 @@ export const Navigation: FC = () => {
         <Toolbar>
           <Hidden only={['lg', 'xl']}>
             <IconButton
-              onClick={() => setDrawerOpen(true)}
+              onClick={handleChangeDrawer}
               size="large"
               edge="start"
               color="inherit"
@@ -94,13 +72,10 @@ export const Navigation: FC = () => {
         </Toolbar>
       </AppBar>
 
-      <Drawer
-        anchor="left"
-        open={isDrawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
-        {list}
-      </Drawer>
+      <NavDrawer
+        isDrawerOpen={isDrawerOpen}
+        onChangeDrawer={handleChangeDrawer}
+      />
     </Box>
   );
 };

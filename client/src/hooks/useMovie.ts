@@ -24,8 +24,10 @@ export const useMovie = () => {
   }, [selectedMovies]);
 
   const deleteMovie = useCallback((movie: Movie) => {
-    setSelectedMovies(selectedMovies.filter(({ id }) => id !== movie.id));
-  }, [selectedMovies]);
+    setSelectedMovies((prevSelectedMovies) => (
+      prevSelectedMovies.filter(({ id }) => id !== movie.id)
+    ));
+  }, [setSelectedMovies]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;

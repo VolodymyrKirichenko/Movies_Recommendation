@@ -16,7 +16,7 @@ const MenuItems = styled(MenuItem)(() => ({
 interface Props {
   movie: Movie,
   onDeleteCard: () => void,
-  isMovieAdded: () => boolean;
+  isMovieAdded: boolean;
   onCardSelect: (movie: Movie) => void,
   onSelectMovie: (movie: Movie) => void;
 }
@@ -38,7 +38,7 @@ export const CardMenuData: FC<Props> = (props) => {
           Add to list
         </MenuItems>
 
-        {!isMovieAdded() ? (
+        {!isMovieAdded ? (
           <MenuItems onClick={() => onSelectMovie(movie)}>
             <FavoriteBorderIcon />
             Favorite

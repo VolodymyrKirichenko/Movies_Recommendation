@@ -54,10 +54,7 @@ export const App: FC = () => {
         <CssBaseline />
         <Navigation />
 
-        <Box sx={{
-          backgroundColor: (theme) => theme.palette.grey[100],
-        }}
-        >
+        <Box sx={{ backgroundColor: (theme) => theme.palette.grey[100] }}>
           <Container maxWidth="xl">
             <Routes>
               <Route path="/" element={<Home />} />
