@@ -4,10 +4,20 @@ import {
   CardMedia,
   MenuItem,
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
+import { styled } from '@mui/material/styles';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { Movie } from '../../typedefs/typedefs';
 import { CardMenu } from '../../MovieCard/CardMenu/CardMenu';
 import { CardContentFile } from './CardContent/CardContent';
+
+const MenuItems = styled(MenuItem)(() => ({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  gap: 10,
+}));
 
 interface Props {
   movie: Movie,
@@ -29,9 +39,10 @@ export const MovieCardSelected: FC<Props> = (props) => {
       <CardContentFile movie={movie} />
 
       <CardMenu>
-        <MenuItem onClick={() => onDelete(movie)}>
-          Delete
-        </MenuItem>
+        <MenuItems onClick={() => onDelete(movie)}>
+          <DeleteIcon />
+          <FormattedMessage id="burger_menu.delete" />
+        </MenuItems>
       </CardMenu>
     </Card>
   );

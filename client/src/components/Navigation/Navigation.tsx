@@ -1,4 +1,4 @@
-import {
+import React, {
   FC, useState, useContext, useCallback,
 } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -13,6 +13,8 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { AppContext } from '../../context/appContext/appContext';
 import { SelectOfTranslation } from './SelectOfTranslation/SelectOfTranslation';
 import { NavDrawer } from './NavDrawer/NavDrawer';
@@ -51,7 +53,7 @@ export const Navigation: FC = () => {
 
           <Link component={RouterLink} to='/' sx={{ flexGrow: 1 }}>
             <Typography variant="h6" component="div" sx={{ color: 'white', flexGrow: 1 }}>
-              Movies recommendation
+              <FormattedMessage id="navigation.home" />
             </Typography>
           </Link>
 
@@ -66,7 +68,7 @@ export const Navigation: FC = () => {
               to='favorites'
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              Favorites
+              <FormattedMessage id="navigation.favorite" />
             </Button>
           </Box>
         </Toolbar>

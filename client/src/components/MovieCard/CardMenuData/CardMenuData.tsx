@@ -4,6 +4,8 @@ import { Box, MenuItem } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { Movie } from '../../typedefs/typedefs';
 import { CardMenu } from '../CardMenu/CardMenu';
 
@@ -35,18 +37,18 @@ export const CardMenuData: FC<Props> = (props) => {
       <Box>
         <MenuItems onClick={() => onCardSelect(movie)}>
           <FormatListBulletedIcon />
-          Add to list
+          <FormattedMessage id="burger_menu.select" />
         </MenuItems>
 
         {!isMovieAdded ? (
           <MenuItems onClick={() => onSelectMovie(movie)}>
             <FavoriteBorderIcon />
-            Favorite
+            <FormattedMessage id="burger_menu.favorite" />
           </MenuItems>
         ) : (
           <MenuItems onClick={onDeleteCard}>
             <FavoriteIcon />
-            Favorite
+            <FormattedMessage id="burger_menu.favorite" />
           </MenuItems>
         )}
       </Box>

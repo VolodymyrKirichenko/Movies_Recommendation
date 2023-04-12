@@ -3,10 +3,11 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Paper from '@mui/material/Paper';
-import * as React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 
 interface Props {
-  onOpen: (value: boolean) => void;
+  onOpen: (value: boolean) => void,
 }
 
 export const ModalAlert: FC<Props> = (props) => {
@@ -27,7 +28,7 @@ export const ModalAlert: FC<Props> = (props) => {
         )}
         sx={{ mb: 2 }}
       >
-        Copied!
+        <FormattedMessage id="copied" />
       </Alert>
     </Paper>
   );

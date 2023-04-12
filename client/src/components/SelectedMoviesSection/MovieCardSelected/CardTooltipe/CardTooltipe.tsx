@@ -4,6 +4,8 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses, TooltipProps } from '@mui/material/Tooltip';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { Movie } from '../../../typedefs/typedefs';
 
 interface Props {
@@ -46,7 +48,7 @@ export const CardTooltipe: FC<Props> = (props) => {
         )}
       >
         <Button sx={{ p: 0 }}>
-          Description of the film
+          <FormattedMessage id="description" />
         </Button>
       </HtmlTooltip>
     </Box>

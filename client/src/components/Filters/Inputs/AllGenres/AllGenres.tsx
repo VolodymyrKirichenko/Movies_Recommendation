@@ -1,7 +1,9 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import {
   Box, Button, Grid,
 } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { Genres, MoviesFilterInput } from '../../../typedefs/typedefs';
 
 interface Props {
@@ -34,7 +36,7 @@ export const AllGenres: FC<Props> = (props) => {
               value={id}
               onClick={() => handleGenreClick(id)}
             >
-              {name}
+              <FormattedMessage id={`genres.${name}`} />
             </Button>
           </Grid>
         ))}

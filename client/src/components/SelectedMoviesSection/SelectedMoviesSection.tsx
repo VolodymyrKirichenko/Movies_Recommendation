@@ -5,6 +5,8 @@ import {
   Typography,
 } from '@mui/material';
 import { FC, useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { ConfirmModal } from './ConfirmModal/ConfirmModal';
 import { MovieCardSelected } from './MovieCardSelected/MovieCardSelected';
 import { MovieCardSelectedForm, Values } from './MovieCardSelectedForm/MovieCardSelectedForm';
@@ -70,7 +72,7 @@ export const SelectedMoviesSection: FC<Props> = (props) => {
           />
 
           <Typography variant="h5" mt={2}>
-            No selected movies
+            <FormattedMessage id="no_selected_movies" />
           </Typography>
         </NoMovies>
       </SelectedMovies>

@@ -4,6 +4,9 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
+import React from 'react';
 import { SORT_DIRECTION } from '../../variables';
 
 export const SortDirectionField = () => {
@@ -12,7 +15,9 @@ export const SortDirectionField = () => {
       name="sortDirection"
       render={({ input }) => (
         <FormControl>
-          <FormLabel id="sort_direction">sort_direction</FormLabel>
+          <FormLabel id="sort_direction">
+            <FormattedMessage id="sort_direction.sort" />
+          </FormLabel>
           <RadioGroup
             type="radio"
             row

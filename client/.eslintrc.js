@@ -129,9 +129,10 @@ module.exports = {
     },
   },
   overrides: [{
-    files: ['src/**/*.slice.ts'],
+    files: ['src/**/*.slice.ts', 'src/context/i18n/i18n.tsx'],
     rules: {
       'no-param-reassign': 'off',
+      'import/no-extraneous-dependencies': 'off',
     },
   }],
 };

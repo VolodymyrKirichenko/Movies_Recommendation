@@ -25,6 +25,7 @@ import { Home } from './pages/Home/Home';
 import { Favorites } from './pages/Favorites/Favorites';
 import { Recommend } from './pages/Recommend/Recommend';
 import { AppContext } from './context/appContext/appContext';
+import { I18Provider } from './context/i18n/i18n';
 
 export const App: FC = () => {
   const { state } = useContext(AppContext);
@@ -49,21 +50,23 @@ export const App: FC = () => {
   });
 
   return (
-    <ApolloProvider client={client}>
-      <BrowserRouter>
-        <CssBaseline />
-        <Navigation />
+    <I18Provider locale={state.locale}>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <CssBaseline />
+          <Navigation />
 
-        <Box sx={{ backgroundColor: (theme) => theme.palette.grey[100] }}>
-          <Container maxWidth="xl">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="favorites" element={<Favorites />} />
-              <Route path="recommend" element={<Recommend />} />
-            </Routes>
-          </Container>
-        </Box>
-      </BrowserRouter>
-    </ApolloProvider>
+          <Box sx={{ backgroundColor: (theme) => theme.palette.grey[100] }}>
+            <Container maxWidth="xl">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="favorites" element={<Favorites />} />
+                <Route path="recommend" element={<Recommend />} />
+              </Routes>
+            </Container>
+          </Box>
+        </BrowserRouter>
+      </ApolloProvider>
+    </I18Provider>
   );
 };

@@ -4,8 +4,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {
-  FC, useCallback, useEffect, useState,
+  FC, useCallback, useState,
 } from 'react';
+import { useTimer } from '../../../hooks/useTimer';
 import { ModalAlert } from './ModalAlert/ModalAlert';
 import { ModalTitle } from './ModalTitle/ModalTitle';
 import { ModalInput } from './ModalInput/ModalInput';
@@ -41,23 +42,13 @@ export const ConfirmModal: FC<Props> = (props) => {
 
   const [openAlert, setOpenAlert] = useState(false);
 
+  useTimer({ openAlert, setOpenAlert });
+
   const copy = useCallback(() => {
     navigator.clipboard.writeText(url);
 
     setOpenAlert(true);
   }, [url]);
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-
-    if (openAlert) {
-      timer = setTimeout(() => {
-        setOpenAlert(false);
-      }, 3000);
-    }
-
-    return () => clearTimeout(timer);
-  }, [openAlert]);
 
   return (
     <Modal

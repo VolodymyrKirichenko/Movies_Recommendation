@@ -13,5 +13,7 @@ export default async function movies(parent: any, args: Args, context: Context) 
   const { page, total_results, total_pages, results } = moviesResponse.data;
   const genres = await getGenres();
 
+  console.log(genres);
+
   return new Movies({ page, total_results, total_pages, results }, genres.data.genres);
 }

@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Typography, CardContent } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { CardTooltipe } from '../CardTooltipe/CardTooltipe';
 import { Movie } from '../../../typedefs/typedefs';
 
@@ -26,7 +28,8 @@ export const CardContentFile: FC<Props> = (props) => {
 
       <Box sx={{ display: 'flex', p: 2 }}>
         <Typography variant="subtitle1" component="div">
-          {`Vote average: ${movie.voteAverage}`}
+          <FormattedMessage id="vote_average" />
+          {`: ${movie.voteAverage}`}
         </Typography>
 
         <Typography variant="subtitle1" color="text.secondary" component="div">

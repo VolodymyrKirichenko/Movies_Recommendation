@@ -7,13 +7,16 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import React, { FC } from 'react';
 import { styled } from '@mui/material/styles';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { CardMenu } from '../MovieCard/CardMenu/CardMenu';
 import { Movie } from '../typedefs/typedefs';
 import { CardInfo } from './CardInfo/CardInfo';
 
 const MenuItems = styled(MenuItem)(() => ({
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-start',
+  gap: 10,
 }));
 
 interface Props {
@@ -29,7 +32,7 @@ export const FavoriteCard: FC<Props> = (props) => {
       <CardMenu>
         <MenuItems onClick={() => onDelete(movie.id)}>
           <DeleteIcon />
-          Delete
+          <FormattedMessage id="burger_menu.delete" />
         </MenuItems>
       </CardMenu>
 

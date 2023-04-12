@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { Button, Drawer, Hidden } from '@mui/material';
 import { useQuery } from '@apollo/client';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { MoviesFilterInput } from '../../typedefs/typedefs';
 import { FilterList } from '../FiltersList/FiltersList';
 import { GENRES_QUERY } from '../queries';
@@ -30,7 +32,7 @@ export const FilterMenu: FC<Props> = (props) => {
           onClick={onChangeDrawer}
           sx={{ mr: 2 }}
         >
-          Filters
+          <FormattedMessage id="filters" />
         </Button>
       </Hidden>
 

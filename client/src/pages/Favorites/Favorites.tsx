@@ -3,6 +3,8 @@ import {
   Box, Grid, Paper, Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FormattedMessage } from 'react-intl';
 import { Movie } from '../../components/typedefs/typedefs';
 import { useLocalStorage } from '../../hooks/useLocaleStorage';
 import { FavoriteCard } from '../../components/FavoriteCard/FavoriteCard';
@@ -52,8 +54,8 @@ export const Favorites: FC = () => {
               src="images/noMovies.png"
             />
 
-            <Typography variant="h2" mt={2}>
-              No selected movies
+            <Typography variant="h2" mt={2} sx={{ textAlign: 'center' }}>
+              <FormattedMessage id="no_selected_movies" />
             </Typography>
           </NoMovies>
         )}

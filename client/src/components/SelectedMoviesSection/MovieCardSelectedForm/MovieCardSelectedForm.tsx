@@ -6,6 +6,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import { FC, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { Typography } from '@mui/material';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useIntl } from 'react-intl';
 
 export interface Errors {
   listName?: string;
@@ -22,6 +24,7 @@ interface Props {
 export const MovieCardSelectedForm: FC<Props> = (props) => {
   const { onSubmit } = props;
   const [isClick, isSetClick] = useState(false);
+  const intl = useIntl();
 
   return (
     <Form
@@ -49,7 +52,7 @@ export const MovieCardSelectedForm: FC<Props> = (props) => {
               render={({ input }) => (
                 <InputBase
                   sx={{ ml: 1, flex: 1 }}
-                  placeholder="Put the list name"
+                  placeholder={intl.formatMessage({ id: 'placeholder' })}
                   inputProps={{ 'aria-label': 'put list name' }}
                   {...input}
                 />
