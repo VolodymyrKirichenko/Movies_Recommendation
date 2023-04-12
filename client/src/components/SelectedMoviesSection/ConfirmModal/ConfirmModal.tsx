@@ -40,9 +40,10 @@ export const ConfirmModal: FC<Props> = (props) => {
     onClose,
   } = props;
 
+  const delay = 3000;
   const [openAlert, setOpenAlert] = useState(false);
 
-  useTimer({ openAlert, setOpenAlert });
+  useTimer({ openAlert, setOpenAlert, delay });
 
   const copy = useCallback(() => {
     navigator.clipboard.writeText(url);

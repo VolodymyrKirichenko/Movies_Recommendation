@@ -3,10 +3,11 @@ import { useEffect } from 'react';
 interface Options {
   openAlert: boolean,
   setOpenAlert: (value: boolean) => void,
+  delay: number,
 }
 
 export const useTimer = (options: Options) => {
-  const { setOpenAlert, openAlert } = options;
+  const { setOpenAlert, openAlert, delay } = options;
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -14,9 +15,9 @@ export const useTimer = (options: Options) => {
     if (openAlert) {
       timer = setTimeout(() => {
         setOpenAlert(false);
-      }, 3000);
+      }, delay);
     }
 
     return () => clearTimeout(timer);
-  }, [openAlert, setOpenAlert]);
+  }, [delay, openAlert, setOpenAlert]);
 };

@@ -7,8 +7,9 @@ const MAX_SELECTED_MOVIES = 20;
 export const useMovie = () => {
   const [selectedMovies, setSelectedMovies] = useState<Movie[]>([]);
   const [openAlert, setOpenAlert] = useState(false);
+  const delay = 2000;
 
-  useTimer({ openAlert, setOpenAlert });
+  useTimer({ openAlert, setOpenAlert, delay });
 
   const handleChangeAlert = useCallback(() => {
     setOpenAlert((prevState) => !prevState);
