@@ -11,7 +11,7 @@ interface Args {
 export default async function movies(parent: any, args: Args, context: Context) {
   const moviesResponse = await discoverMovie(args.filter, context.locale);
   const { page, total_results, total_pages, results } = moviesResponse.data;
-  const genres = await getGenres();
+  const genres = await getGenres(context.locale);
 
   return new Movies({ page, total_results, total_pages, results }, genres.data.genres);
 }

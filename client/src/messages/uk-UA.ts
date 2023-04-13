@@ -15,6 +15,7 @@ export default {
     description: 'Опис фільму',
     confirm_modal_title: 'Мої улюблені фільми',
     placeholder: 'Введіть  назву списку',
+    language: 'UKR',
     movieCardAlert: {
       added: 'Фільм був доданий',
       deleted: 'Фільм був видалений',

@@ -15,6 +15,7 @@ export default {
     description: 'Description of the film',
     confirm_modal_title: 'My favorite movies',
     placeholder: 'Put the list name',
+    language: 'USA',
     movieCardAlert: {
       added: 'Movie was added',
       deleted: 'Movie was deleted',
