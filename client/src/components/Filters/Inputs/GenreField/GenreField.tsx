@@ -4,7 +4,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import React, { FC } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 import { Genres } from '../../../typedefs/typedefs';
 

@@ -6,7 +6,6 @@ import CheckIcon from '@mui/icons-material/Check';
 import { FC, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { Typography } from '@mui/material';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useIntl } from 'react-intl';
 
 export interface Errors {

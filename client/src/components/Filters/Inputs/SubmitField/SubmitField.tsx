@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 import React from 'react';
 

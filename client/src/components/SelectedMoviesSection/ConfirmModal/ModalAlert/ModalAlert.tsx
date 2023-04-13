@@ -3,7 +3,6 @@ import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Paper from '@mui/material/Paper';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 
 interface Props {

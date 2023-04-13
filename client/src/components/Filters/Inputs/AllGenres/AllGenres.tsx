@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import {
   Box, Button, Grid,
 } from '@mui/material';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 import { Genres, MoviesFilterInput } from '../../../typedefs/typedefs';
 

@@ -4,7 +4,6 @@ import { Box, MenuItem } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 import { Movie } from '../../typedefs/typedefs';
 import { CardMenu } from '../CardMenu/CardMenu';

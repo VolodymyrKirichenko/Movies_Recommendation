@@ -15,6 +15,10 @@ export default {
     description: 'Опис фільму',
     confirm_modal_title: 'Мої улюблені фільми',
     placeholder: 'Введіть  назву списку',
+    movieCardAlert: {
+      added: 'Фільм був доданий',
+      deleted: 'Фільм був видалений',
+    },
     burger_menu: {
       select: 'Вибрати',
       favorite: 'Улюблене',

@@ -13,7 +13,6 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 import { AppContext } from '../../context/appContext/appContext';
 import { SelectOfTranslation } from './SelectOfTranslation/SelectOfTranslation';

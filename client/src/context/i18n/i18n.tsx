@@ -1,5 +1,4 @@
 import React, { FC, Fragment } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { IntlProvider } from 'react-intl';
 import flatten from 'flat';
 import messages from '../../messages';

@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 
 export const ModalTitle: FC = () => {

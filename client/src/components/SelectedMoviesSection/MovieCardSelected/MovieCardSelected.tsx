@@ -7,7 +7,6 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { styled } from '@mui/material/styles';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 import { Movie } from '../../typedefs/typedefs';
 import { CardMenu } from '../../MovieCard/CardMenu/CardMenu';

@@ -15,6 +15,10 @@ export default {
     description: 'Description of the film',
     confirm_modal_title: 'My favorite movies',
     placeholder: 'Put the list name',
+    movieCardAlert: {
+      added: 'Movie was added',
+      deleted: 'Movie was deleted',
+    },
     burger_menu: {
       select: 'Select',
       favorite: 'Favorite',

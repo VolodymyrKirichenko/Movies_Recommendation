@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Box, Typography, CardContent } from '@mui/material';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 import { CardTooltipe } from '../CardTooltipe/CardTooltipe';
 import { Movie } from '../../../typedefs/typedefs';

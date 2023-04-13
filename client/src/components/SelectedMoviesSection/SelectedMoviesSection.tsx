@@ -5,7 +5,6 @@ import {
   Typography,
 } from '@mui/material';
 import { FC, useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FormattedMessage } from 'react-intl';
 import { ConfirmModal } from './ConfirmModal/ConfirmModal';
 import { MovieCardSelected } from './MovieCardSelected/MovieCardSelected';
