@@ -14,7 +14,7 @@ export const AllGenres: FC<Props> = (props) => {
   const { data, onSubmit } = props;
 
   const handleGenreClick = (id: number) => {
-    const filterInput: any = {
+    const filterInput: MoviesFilterInput = {
       page: 1,
       sortBy: 'popularity',
       sortDirection: 'desc',

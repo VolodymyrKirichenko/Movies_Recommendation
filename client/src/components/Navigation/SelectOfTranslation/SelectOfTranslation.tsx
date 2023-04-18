@@ -1,5 +1,5 @@
 import {
-  FC, useMemo, useState,
+  FC, useCallback, useMemo, useState,
 } from 'react';
 import {
   Box,
@@ -20,7 +20,9 @@ interface Props {
 export const SelectOfTranslation: FC<Props> = (props) => {
   const { onChangeLanguage, state } = props;
 
-  const text = state.locale === 'en-us' ? 'USA' : 'UKR';
+  const text = useMemo(() => {
+    return state.locale === 'en-us' ? 'USA' : 'UKR';
+  }, [state.locale]);
 
   const languageList = useMemo(() => (
     [LOCALES.UKRANIAN, LOCALES.ENGLISH]
@@ -33,9 +35,14 @@ export const SelectOfTranslation: FC<Props> = (props) => {
     setSpeech(event.target.value);
   };
 
-  const handleChangeOpening = () => {
+  const handleChangeOpening = useCallback(() => {
     setIsOpen((prevState) => !prevState);
-  };
+  }, []);
+
+  const handleClick = useCallback((lang: string) => {
+    onChangeLanguage(lang);
+    handleChangeOpening();
+  }, [handleChangeOpening, onChangeLanguage]);
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -58,8 +65,7 @@ export const SelectOfTranslation: FC<Props> = (props) => {
               key={language}
               state={state}
               language={language}
-              onChangeLanguage={onChangeLanguage}
-              handleClose={handleChangeOpening}
+              handleClick={() => handleClick(language)}
             />
           ))}
         </Select>

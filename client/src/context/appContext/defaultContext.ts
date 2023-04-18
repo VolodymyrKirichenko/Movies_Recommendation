@@ -1,5 +1,5 @@
 import { LOCALES } from './const';
-import { getFromStorage } from '../../hooks/useLanguageStorage';
+import { getFromStorage } from '../../hooks/useLocalStorage';
 
 export default {
   locale: LOCALES.ENGLISH,

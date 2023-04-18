@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Movie } from '../components/typedefs/typedefs';
 
-export function useLocalStorage(key: string, initialValue: Movie[] = []) {
+export function useMovieLocaleStorage(key: string, initialValue: Movie[] = []) {
   const [state, setState] = useState<Movie[]>(() => {
     const storedValue = localStorage.getItem(key);
 

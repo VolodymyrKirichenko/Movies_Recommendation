@@ -1,11 +1,10 @@
+import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { FormattedMessage } from 'react-intl';
-import React from 'react';
 import { SORT_DIRECTION } from '../../variables';
 
 export const SortDirectionField = () => {
@@ -17,6 +16,7 @@ export const SortDirectionField = () => {
           <FormLabel id="sort_direction">
             <FormattedMessage id="sort_direction.sort" />
           </FormLabel>
+
           <RadioGroup
             type="radio"
             row

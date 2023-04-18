@@ -2,11 +2,12 @@ import { useSearchParams } from 'react-router-dom';
 import React, { FC, useEffect, useState } from 'react';
 import { Box, Grid, Paper } from '@mui/material';
 import { useQuery } from '@apollo/client';
-import LinearProgress from '@mui/material/LinearProgress';
+import { HomeError } from '../Home/HomeError/HomeError';
 import { Movie } from '../../components/typedefs/typedefs';
 import { MOVIES_BY_IDS_QUERY } from './queries';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import { useMovie } from '../../hooks/useMovie';
+import { HomeLoader } from '../Home/HomeLoader/HomeLoader';
 
 interface Params {
   ids: number[],
@@ -24,6 +25,7 @@ export const Recommend: FC = () => {
 
   const {
     loading,
+    error,
     data,
   } = useQuery(MOVIES_BY_IDS_QUERY, { variables: { ids: params.ids } });
 
@@ -43,11 +45,9 @@ export const Recommend: FC = () => {
   return (
     <Box sx={{ height: '100%' }}>
       <Paper elevation={3} sx={{ padding: 5, minHeight: 'calc(100vh - 70px)' }}>
-        {loading && (
-          <Box sx={{ width: '100%' }}>
-            <LinearProgress />
-          </Box>
-        )}
+        {loading && <HomeLoader />}
+
+        {error && <HomeError text="No selected movies" />}
 
         {data?.moviesByIds && (
           <Grid container spacing={2} sx={{ padding: 5 }}>

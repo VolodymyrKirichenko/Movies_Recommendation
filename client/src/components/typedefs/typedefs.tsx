@@ -1,3 +1,5 @@
+import { Dispatch, ReactNode } from 'react';
+
 export interface Genre {
   id: number;
   name: string;
@@ -46,6 +48,22 @@ export interface InitialValues {
   sortBy: string,
   sortDirection: string,
   includeAdult: boolean,
+}
+
+export interface Action {
+  type: string;
+  locale?: string;
+}
+
+export interface AppContextType {
+  state: {
+    locale: string;
+  };
+  dispatch: Dispatch<Action>;
+}
+
+export interface AppContextProviderProps {
+  children: ReactNode;
 }
 
 export interface MovieCardType {

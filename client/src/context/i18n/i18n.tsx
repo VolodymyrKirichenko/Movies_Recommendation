@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import { FC, Fragment, ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 import flatten from 'flat';
 import messages from '../../messages';
@@ -6,7 +6,7 @@ import messages from '../../messages';
 import { LOCALES } from '../appContext/const';
 
 interface Props {
-  children: any,
+  children: ReactNode,
   locale: string,
 }
 

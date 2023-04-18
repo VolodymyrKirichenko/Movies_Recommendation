@@ -5,7 +5,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { styled } from '@mui/material/styles';
 import { FormattedMessage } from 'react-intl';
 import { CardMenu } from '../MovieCard/CardMenu/CardMenu';
@@ -27,7 +27,7 @@ export const FavoriteCard: FC<Props> = (props) => {
   const { movie, onDelete } = props;
 
   return (
-    <Card sx={{ maxWidth: 200, height: 400, position: 'relative' }}>
+    <Card sx={{ height: 400, position: 'relative' }}>
       <CardMenu>
         <MenuItems onClick={() => onDelete(movie.id)}>
           <DeleteIcon />

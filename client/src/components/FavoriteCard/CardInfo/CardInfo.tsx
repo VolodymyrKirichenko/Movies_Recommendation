@@ -1,6 +1,9 @@
 import { styled } from '@mui/material/styles';
-import { Box, CardContent, Typography } from '@mui/material';
+import {
+  Box, CardContent, Typography,
+} from '@mui/material';
 import React, { FC } from 'react';
+import { CardInfoTooltip } from './CardInfoTooltip/CardInfoTooltip';
 import { Movie } from '../../typedefs/typedefs';
 
 const CardInfoStyle = styled(CardContent)(({ theme }) => ({
@@ -23,9 +26,13 @@ export const CardInfo: FC<Props> = (props) => {
   return (
     <CardInfoStyle>
       <Box>
-        <Typography variant="h6" gutterBottom sx={{ fontSize: 14 }}>
-          {movie.title}
-        </Typography>
+        {movie.title.length > 40 ? (
+          <CardInfoTooltip movie={movie} />
+        ) : (
+          <Box>
+            {movie.title}
+          </Box>
+        )}
 
         <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
           {typeof movie.genres === 'string' && movie.genres}

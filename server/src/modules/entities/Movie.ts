@@ -32,14 +32,14 @@ export class Movie {
     this.voteAverage = movie.vote_average;
     this.genreIds = movie.genre_ids;
     this.genres = movie.genre_ids
-      .map((genreId: any) => {
+      .map((genreId: number) => {
         const genre = genress.find((g) => g.id === genreId);
 
         return genre
           ? genre.name
           : '';
       })
-      .filter((genreName: any) => genreName !== '')
+      .filter((genreName: string) => genreName !== '')
       .join(', ');
   }
 }

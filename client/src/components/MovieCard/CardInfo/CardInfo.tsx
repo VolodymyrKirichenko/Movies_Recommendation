@@ -1,6 +1,11 @@
 import { styled } from '@mui/material/styles';
-import { Box, CardContent, Typography } from '@mui/material';
-import React, { FC, useMemo } from 'react';
+import {
+  Box, CardContent, Typography, Button,
+} from '@mui/material';
+import { FC, useMemo, useState } from 'react';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import { Movie } from '../../typedefs/typedefs';
 
 const CardInfoStyle = styled(CardContent)(({ theme }) => ({
@@ -21,6 +26,12 @@ interface Props {
 export const CardInfo: FC<Props> = (props) => {
   const { isPreviewMode, movie } = props;
 
+  const [open, setOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpen((prevState) => !prevState);
+  };
+
   const getGenres = useMemo(() => {
     if (!isPreviewMode && Array.isArray(movie.genres)) {
       return movie.genres.map((item) => item.name).join(', ');
@@ -32,9 +43,32 @@ export const CardInfo: FC<Props> = (props) => {
   return (
     <CardInfoStyle>
       <Box>
-        <Typography variant="h6" gutterBottom sx={{ fontSize: 14 }}>
-          {movie.title}
-        </Typography>
+        {movie.title.length > 40 ? (
+          <Box>
+            {movie.title.substring(0, 37)}
+
+            <Button
+              onClick={handleOpenModal}
+              color="primary"
+              sx={{ minWidth: 'max-content', p: 0 }}
+            >
+              ...
+            </Button>
+
+            <Dialog open={open} onClose={handleOpenModal}>
+
+              <DialogTitle>Full Title</DialogTitle>
+
+              <DialogContent>
+                {movie.title}
+              </DialogContent>
+            </Dialog>
+          </Box>
+        ) : (
+          <Box>
+            {movie.title}
+          </Box>
+        )}
 
         <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
           {getGenres}

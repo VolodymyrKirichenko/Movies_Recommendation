@@ -1,4 +1,4 @@
-export const useLanguageStorage = (name: string, data: any) => {
+export const useLocalStorage = (name: string, data: any) => {
   if (!window || !window.localStorage) {
     return;
   }
@@ -14,7 +14,6 @@ export const getFromStorage = (name: string) => {
   try {
     return JSON.parse(<string>window.localStorage.getItem(name));
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error);
 
     return null;

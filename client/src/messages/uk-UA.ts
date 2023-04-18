@@ -16,9 +16,10 @@ export default {
     confirm_modal_title: 'Мої улюблені фільми',
     placeholder: 'Введіть  назву списку',
     language: 'UKR',
+    your_favorite_movie: 'Твої улюблені фільми',
     movieCardAlert: {
-      added: 'Фільм був доданий',
-      deleted: 'Фільм був видалений',
+      Added: 'Фільм був доданий',
+      Delete: 'Фільм був видалений',
     },
     burger_menu: {
       select: 'Вибрати',

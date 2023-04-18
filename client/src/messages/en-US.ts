@@ -16,9 +16,10 @@ export default {
     confirm_modal_title: 'My favorite movies',
     placeholder: 'Put the list name',
     language: 'USA',
+    your_favorite_movie: 'Your favorite movies',
     movieCardAlert: {
-      added: 'Movie was added',
-      deleted: 'Movie was deleted',
+      Added: 'Movie was added',
+      Delete: 'Movie was deleted',
     },
     burger_menu: {
       select: 'Select',

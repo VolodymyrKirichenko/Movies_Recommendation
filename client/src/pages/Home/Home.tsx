@@ -63,7 +63,7 @@ export const Home: FC = () => {
             <Box sx={{ flexGrow: 1, padding: 1, height: 'max-content' }}>
               {loading && <HomeLoader />}
 
-              {error && <HomeError />}
+              {error && <HomeError text='No movies found' />}
 
               {movieData && (
                 <Grid container spacing={1}>
