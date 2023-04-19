@@ -5,6 +5,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Divider from '@mui/material/Divider';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
 
 interface Props {
   url: string,
@@ -13,6 +14,8 @@ interface Props {
 
 export const ModalInput: FC<Props> = (props) => {
   const { copy, url } = props;
+
+  const path = url.split('?')[1];
 
   return (
     <Paper
@@ -33,7 +36,13 @@ export const ModalInput: FC<Props> = (props) => {
         value={url}
       />
 
-      <IconButton href={url} target="_blank" sx={{ p: '10px' }} aria-label="preview">
+      <IconButton
+        component={Link}
+        to={`/recommend?${path}`}
+        target="_blank"
+        sx={{ p: '10px' }}
+        aria-label="preview"
+      >
         <VisibilityIcon />
       </IconButton>
 

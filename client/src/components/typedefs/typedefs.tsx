@@ -66,6 +66,14 @@ export interface AppContextProviderProps {
   children: ReactNode;
 }
 
+export interface Errors {
+  listName?: string;
+}
+
+export interface Values {
+  listName?: string;
+}
+
 export interface MovieCardType {
   movie: Movie;
   onCardSelect: () => void;

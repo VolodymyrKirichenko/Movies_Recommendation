@@ -26,6 +26,7 @@ import { Favorites } from './pages/Favorites/Favorites';
 import { Recommend } from './pages/Recommend/Recommend';
 import { AppContext } from './context/appContext/appContext';
 import { I18Provider } from './context/i18n/i18n';
+import { SelectedMovie } from './pages/SelectedMovie/SelectedMovie';
 
 export const App: FC = () => {
   const { state } = useContext(AppContext);
@@ -56,12 +57,13 @@ export const App: FC = () => {
           <CssBaseline />
           <Navigation />
 
-          <Box sx={{ backgroundColor: (theme) => theme.palette.grey[100] }}>
+          <Box sx={{ backgroundColor: (theme) => theme.palette.grey[200] }}>
             <Container maxWidth="xl">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="favorites" element={<Favorites />} />
                 <Route path="recommend" element={<Recommend />} />
+                <Route path="selectedMovie" element={<SelectedMovie />} />
               </Routes>
             </Container>
           </Box>

@@ -7,14 +7,7 @@ import { FC, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { Typography } from '@mui/material';
 import { useIntl } from 'react-intl';
-
-export interface Errors {
-  listName?: string;
-}
-
-export interface Values {
-  listName?: string;
-}
+import { Errors, Values } from '../../typedefs/typedefs';
 
 interface Props {
   onSubmit: (values: Values) => void;

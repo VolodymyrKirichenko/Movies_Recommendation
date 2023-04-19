@@ -25,6 +25,7 @@ export default {
       select: 'Вибрати',
       favorite: 'Улюблене',
       delete: 'Видалити',
+      info: 'Інфо',
     },
     genres: {
       Genre: 'Жанри',

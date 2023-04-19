@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Box, Grid, Paper } from '@mui/material';
 import { useQuery } from '@apollo/client';
 import { HomeError } from '../Home/HomeError/HomeError';

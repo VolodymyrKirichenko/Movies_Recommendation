@@ -1,5 +1,6 @@
 import { Card } from '@mui/material';
 import React, { FC, useCallback, useMemo } from 'react';
+import { SelectedCardMenu } from '../SelectedMoviesSection/MovieCardSelected/SelectedCardMenu/SelectedCardMenu';
 import { CardMenuData } from './CardMenuData/CardMenuData';
 import { useMovieLocaleStorage } from '../../hooks/useMovieLocaleStorage';
 import { CARD_ACTION, Movie } from '../typedefs/typedefs';
@@ -67,7 +68,7 @@ export const MovieCard: FC<Props> = (props) => {
       position: 'relative',
     }}
     >
-      {isPreviewMode && (
+      {isPreviewMode ? (
         <CardMenuData
           movie={movie}
           onCardSelect={onCardSelect}
@@ -75,6 +76,8 @@ export const MovieCard: FC<Props> = (props) => {
           isMovieAdded={isFilmAlreadyAdded}
           onDeleteCard={handleDelete}
         />
+      ) : (
+        <SelectedCardMenu movie={movie} />
       )}
 
       <CardMediaFile

@@ -25,6 +25,7 @@ export default {
       select: 'Select',
       favorite: 'Favorite',
       delete: 'Delete',
+      info: 'Info',
     },
     genres: {
       Genre: 'Genre',
