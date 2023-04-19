@@ -19,6 +19,7 @@ export interface Movie {
   genreIds: number[];
   voteAverage: number;
   overview: string;
+  originalLanguage: string;
 }
 
 export interface Movies {
@@ -72,6 +73,10 @@ export interface Errors {
 
 export interface Values {
   listName?: string;
+}
+
+export interface MoviesByIds {
+  moviesByIds: Movie[];
 }
 
 export interface MovieCardType {

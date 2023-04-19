@@ -17,6 +17,15 @@ export default {
     placeholder: 'Put the list name',
     language: 'USA',
     your_favorite_movie: 'Your favorite movies',
+    selected_movie: {
+      vote_average: 'Vote average',
+      release_date: 'Release date',
+      runtime: 'Runtime',
+      original_language: 'Original language',
+      genres: 'Genres',
+      time: 'min',
+      overview: 'At the moment - description has not been added',
+    },
     movieCardAlert: {
       Added: 'Movie was added',
       Delete: 'Movie was deleted',

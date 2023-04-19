@@ -1,6 +1,4 @@
-import { Movie } from '../components/typedefs/typedefs';
-
-export const movies: Movie[] = [
+export const movies: any = [
   {
     id: '63fcd923958bfa6dd6de6eb6',
     image: 'https://www.themoviedb.org/t/p/w220_and_h330_face/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg',
