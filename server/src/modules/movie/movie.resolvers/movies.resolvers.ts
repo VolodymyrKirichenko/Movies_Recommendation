@@ -4,12 +4,20 @@ import { getGenres } from '../../genre/genre.resolvers/getGenres.resolvers';
 import { Movies } from '../../../modules/entities/Movies';
 
 interface Args {
+  filter: MoviesFilterInput | string;
+  query: string;
   page: number;
-  filter: MoviesFilterInput;
 }
 
 export default async function movies(parent: any, args: Args, context: Context) {
-  const moviesResponse = await discoverMovie(args.filter, context.locale);
+  let moviesResponse;
+
+  if (args.query) {
+    moviesResponse = await discoverMovie(args.query, context.locale, args.page);
+  } else {
+    moviesResponse = await discoverMovie(args.filter, context.locale);
+  }
+
   const { page, total_results, total_pages, results } = moviesResponse.data;
   const genres = await getGenres(context.locale);
 

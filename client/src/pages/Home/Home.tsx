@@ -1,8 +1,10 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, {
+  FC, useCallback, useState,
+} from 'react';
 import {
-  Box, Grid, Paper,
+  Box, Button, Grid, Paper, TextField,
 } from '@mui/material';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import { HomeLoader } from './HomeLoader/HomeLoader';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import { MOVIES_QUERY } from './queries';
@@ -14,10 +16,21 @@ import { MovieCardAlert } from '../../components/MovieCard/MovieCardAlert/MovieC
 import { Paginator } from '../../components/Paginator/Paginator';
 import { HomeError } from './HomeError/HomeError';
 import { Filters } from '../../components/Filters/Filters';
+import { useSearchMovie } from '../../hooks/useSearchMovie';
 
 export const Home: FC = () => {
+  const [cardAction, setCardAction] = useState<CARD_ACTION>(CARD_ACTION.ActionAdded);
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+
   const { filter, setPage, setFiltering } = useFilters();
-  const { loading, error, data: movieData } = useQuery(MOVIES_QUERY, { variables: { filter } });
+
+  const [searchMovies, { data: searchMoviesData }] = useLazyQuery(MOVIES_QUERY);
+  const {
+    error,
+    loading,
+    data: movieData,
+  } = useQuery(MOVIES_QUERY, { variables: { filter } });
+
   const {
     openAlert,
     selectMovie,
@@ -25,8 +38,12 @@ export const Home: FC = () => {
     selectedMovies,
     handleChangeAlert,
   } = useMovie();
-  const [cardAction, setCardAction] = useState<CARD_ACTION>(CARD_ACTION.ActionAdded);
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
+
+  const {
+    searchKey,
+    onSubmitForm,
+    onSearchChange,
+  } = useSearchMovie({ filter, searchMovies });
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, selectedPage: number) => {
     setPage(selectedPage);
@@ -41,8 +58,25 @@ export const Home: FC = () => {
     setDrawerOpen(false);
   }, [setFiltering]);
 
+  const listOfMovies = searchMoviesData || movieData;
+
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
+      <Box>
+        <form onSubmit={onSubmitForm}>
+          <TextField
+            size="small"
+            type="text"
+            value={searchKey}
+            onChange={onSearchChange}
+          />
+
+          <Button type="submit">
+            Search!
+          </Button>
+        </form>
+      </Box>
+
       <Grid container spacing={2}>
         <Filters
           filter={filter}
@@ -65,9 +99,9 @@ export const Home: FC = () => {
 
               {error && <HomeError text='No movies found' />}
 
-              {movieData && (
+              {listOfMovies && (
                 <Grid container spacing={1}>
-                  {movieData.movies.results.map((movie: Movie) => (
+                  {listOfMovies.movies.results.map((movie: Movie) => (
                     <Grid key={movie.id} item xs={6} sm={4} md={4} lg={3}>
                       <MovieCard
                         movie={movie}

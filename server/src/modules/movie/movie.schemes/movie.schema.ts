@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export const MovieSchema = gql`
     type Query {
-        movies(filter: MoviesFilterInput): Movies
+        movies(filter: MoviesFilterInput, query: String, page: Int): Movies
     }
 
     input MoviesFilterInput {

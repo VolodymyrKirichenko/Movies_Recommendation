@@ -12,7 +12,11 @@ interface Props {
 }
 
 export const Paginator: FC<Props> = (props) => {
-  const { movieData, onChangePage, filter } = props;
+  const {
+    filter,
+    movieData,
+    onChangePage,
+  } = props;
 
   const pageMovies = movieData?.movies?.totalResults < 500
     ? movieData.movies.totalResults

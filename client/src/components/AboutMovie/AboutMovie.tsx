@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { styled } from '@mui/material/styles';
 import {
-  Box, Card, Paper, Typography,
+  Box, Paper, Typography,
 } from '@mui/material';
 import { FormattedMessage } from 'react-intl';
 import { AboutMovieContent } from './AboutMovieContent/AboutMovieContent';
@@ -26,7 +26,7 @@ export const AboutMovie: FC<Props> = (props) => {
   return (
     <Container>
       <Paper sx={{ p: 3, maxWidth: 600 }} elevation={7}>
-        <Card>
+        <Box>
           <Box>
             <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
               {movieData?.title}
@@ -57,7 +57,7 @@ export const AboutMovie: FC<Props> = (props) => {
               </Box>
             </Box>
           </Box>
-        </Card>
+        </Box>
       </Paper>
     </Container>
   );
