@@ -1,6 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
 import { FC, useEffect, useState } from 'react';
-import { Box, Grid, Paper } from '@mui/material';
+import {
+  Box,
+  Grid,
+  Paper,
+  Container,
+} from '@mui/material';
 import { useQuery } from '@apollo/client';
 import { HomeError } from '../Home/HomeError/HomeError';
 import { Movie } from '../../components/typedefs/typedefs';
@@ -43,13 +48,14 @@ export const Recommend: FC = () => {
   }, [searchParams]);
 
   return (
-    <Box sx={{ height: '100%' }}>
-      <Paper elevation={3} sx={{ padding: 5, minHeight: 'calc(100vh - 70px)' }}>
-        {loading && <HomeLoader />}
+    <Container maxWidth="xl">
+      <Box sx={{ height: '100%' }}>
+        <Paper elevation={3} sx={{ padding: 5, minHeight: 'calc(100vh - 70px)' }}>
+          {loading && <HomeLoader />}
 
-        {error && <HomeError text="No selected movies" />}
+          {error && <HomeError text="No selected movies" />}
 
-        {data?.moviesByIds && (
+          {data?.moviesByIds && (
           <Grid container spacing={2} sx={{ padding: 5 }}>
             {data.moviesByIds.map((movie: Movie) => (
               <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>
@@ -61,8 +67,9 @@ export const Recommend: FC = () => {
               </Grid>
             ))}
           </Grid>
-        )}
-      </Paper>
-    </Box>
+          )}
+        </Paper>
+      </Box>
+    </Container>
   );
 };

@@ -27,7 +27,7 @@ export const CardInfo: FC<Props> = (props) => {
     <CardInfoStyle>
       <Box>
         {movie.title.length > 40 ? (
-          <CardInfoTooltip movie={movie} />
+          <CardInfoTooltip movie={movie} lastSymbol={25} />
         ) : (
           <Box>
             {movie.title}

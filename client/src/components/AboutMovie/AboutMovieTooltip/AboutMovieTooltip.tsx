@@ -2,22 +2,22 @@ import React, { FC } from 'react';
 import {
   Button, Tooltip, Box,
 } from '@mui/material';
-import { Movie } from '../../../typedefs/typedefs';
+import { Movie } from '../../typedefs/typedefs';
 
 interface Props {
   movie: Movie,
   lastSymbol: number,
 }
 
-export const CardInfoTooltip: FC<Props> = (props) => {
+export const AboutMovieTooltip: FC<Props> = (props) => {
   const { movie, lastSymbol } = props;
 
-  const shortTitle = movie.title.substring(0, lastSymbol);
+  const shortOverview = movie.overview.substring(0, lastSymbol);
 
   return (
-    <Tooltip title={movie.title}>
+    <Tooltip title={movie.overview} placement="right-end">
       <Box>
-        {shortTitle}
+        {shortOverview}
 
         <Button
           color="primary"

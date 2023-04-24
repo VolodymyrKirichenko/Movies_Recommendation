@@ -1,12 +1,7 @@
 import React, { FC } from 'react';
-import { Box, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Box } from '@mui/material';
 import { Movie } from '../../typedefs/typedefs';
 import { AboutMovieText } from '../AboutMovieText/AboutMovieText';
-
-export const LineOfText = styled(Typography)(() => ({
-  variant: 'subtitle1',
-}));
 
 interface Genre {
   name: string,

@@ -17,6 +17,7 @@ export default {
     placeholder: 'Введіть  назву списку',
     language: 'UKR',
     your_favorite_movie: 'Твої улюблені фільми',
+    search_by_title_input: 'Введіть назву фільму, який хочете знайти',
     selected_movie: {
       vote_average: 'Середня оцінка',
       release_date: 'Дата випуску',

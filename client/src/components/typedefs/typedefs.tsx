@@ -20,6 +20,7 @@ export interface Movie {
   voteAverage: number;
   overview: string;
   originalLanguage: string;
+  backdropPath: string;
 }
 
 export interface Movies {

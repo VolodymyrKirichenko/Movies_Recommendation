@@ -1,15 +1,39 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback, useEffect, useState,
+} from 'react';
 import { MoviesFilterInput } from '../components/typedefs/typedefs';
 
 interface Options {
+  refetch: () => void,
   filter: MoviesFilterInput,
+  onClick: (value: boolean) => void,
+  setPage: (page: number) => void,
   searchMovies: (vars: any) => void,
 }
 
 export const useSearchMovie = (options: Options) => {
-  const { searchMovies, filter } = options;
+  const {
+    filter,
+    setPage,
+    refetch,
+    onClick,
+    searchMovies,
+  } = options;
 
   const [searchKey, setSearchKey] = useState('');
+
+  const handleClickReset = useCallback(() => {
+    onClick(true);
+
+    setSearchKey('');
+    setPage(1);
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refetch]);
+
+  const handleClickSubmit = useCallback(() => {
+    onClick(false);
+  }, [onClick]);
 
   const { page } = filter;
 
@@ -42,5 +66,7 @@ export const useSearchMovie = (options: Options) => {
     searchKey,
     onSubmitForm,
     onSearchChange,
+    handleClickReset,
+    handleClickSubmit,
   };
 };

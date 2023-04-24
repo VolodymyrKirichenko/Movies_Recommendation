@@ -15,6 +15,7 @@ export const MOVIES_BY_IDS_QUERY = gql`
             overview
             originalLanguage
             voteAverage
+            backdropPath
         }
     }
 `;

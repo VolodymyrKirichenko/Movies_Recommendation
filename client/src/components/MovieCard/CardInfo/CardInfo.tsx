@@ -40,6 +40,8 @@ export const CardInfo: FC<Props> = (props) => {
     return typeof movie.genres === 'string' && movie.genres;
   }, [isPreviewMode, movie.genres]);
 
+  const voteAverage = Math.round(10 * movie.voteAverage) / 10;
+
   return (
     <CardInfoStyle>
       <Box>
@@ -87,7 +89,7 @@ export const CardInfo: FC<Props> = (props) => {
         <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
           {!isPreviewMode
             ? `${movie.runtime}m`
-            : `${movie.voteAverage}`
+            : `${voteAverage}`
           }
         </Typography>
       </Box>

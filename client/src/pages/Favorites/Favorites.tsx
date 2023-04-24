@@ -1,6 +1,10 @@
 import React, { FC, useCallback } from 'react';
 import {
-  Box, Grid, Paper, Typography,
+  Box,
+  Grid,
+  Paper,
+  Container,
+  Typography,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FormattedMessage } from 'react-intl';
@@ -38,41 +42,43 @@ export const Favorites: FC = () => {
   }, [removeMovie]);
 
   return (
-    <Box sx={{ height: '100%' }}>
-      <Paper elevation={3} sx={{ pl: 5, pr: 5, minHeight: 'calc(100vh - 70px)' }}>
-        {favoriteMovies.length ? (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Div><FormattedMessage id="your_favorite_movie" /></Div>
+    <Container maxWidth="xl">
+      <Box sx={{ height: '100%' }}>
+        <Paper elevation={3} sx={{ pl: 5, pr: 5, minHeight: 'calc(100vh - 70px)' }}>
+          {favoriteMovies.length ? (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Div><FormattedMessage id="your_favorite_movie" /></Div>
 
-            <Grid container spacing={2}>
-              {favoriteMovies.map((movie: Movie) => (
-                <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>
-                  <FavoriteCard
-                    movie={movie}
-                    onDelete={handleDelete}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        ) : (
-          <NoMovies>
-            <Box
-              component="img"
-              sx={{
-                width: '50%',
-                opacity: '.6',
-              }}
-              alt="No images."
-              src="images/noMovies.png"
-            />
+              <Grid container spacing={2}>
+                {favoriteMovies.map((movie: Movie) => (
+                  <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>
+                    <FavoriteCard
+                      movie={movie}
+                      onDelete={handleDelete}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          ) : (
+            <NoMovies>
+              <Box
+                component="img"
+                sx={{
+                  width: '50%',
+                  opacity: '.6',
+                }}
+                alt="No images."
+                src="images/noMovies.png"
+              />
 
-            <Typography variant="h2" mt={2} sx={{ textAlign: 'center' }}>
-              <FormattedMessage id="no_selected_movies" />
-            </Typography>
-          </NoMovies>
-        )}
-      </Paper>
-    </Box>
+              <Typography variant="h2" mt={2} sx={{ textAlign: 'center' }}>
+                <FormattedMessage id="no_selected_movies" />
+              </Typography>
+            </NoMovies>
+          )}
+        </Paper>
+      </Box>
+    </Container>
   );
 };

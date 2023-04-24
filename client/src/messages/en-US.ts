@@ -17,6 +17,7 @@ export default {
     placeholder: 'Put the list name',
     language: 'USA',
     your_favorite_movie: 'Your favorite movies',
+    search_by_title_input: 'Enter the title of the movie you want to find',
     selected_movie: {
       vote_average: 'Vote average',
       release_date: 'Release date',

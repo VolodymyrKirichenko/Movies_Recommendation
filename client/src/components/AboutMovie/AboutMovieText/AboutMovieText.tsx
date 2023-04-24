@@ -5,6 +5,7 @@ import { Typography } from '@mui/material';
 
 export const LineOfText = styled(Typography)(() => ({
   variant: 'subtitle1',
+  textShadow: '0px 0px 10px #fff',
 }));
 
 interface Props {

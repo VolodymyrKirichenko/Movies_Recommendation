@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import { styled } from '@mui/material/styles';
-import {
-  Box, Paper, Typography,
-} from '@mui/material';
-import { FormattedMessage } from 'react-intl';
+import { Box, Paper } from '@mui/material';
+import { AboutMovieTitle } from './AboutMovieTitle/AboutMovieTitle';
+import { AboutMovieMedia } from './AboutMovieMedia/AboutMovieMedia';
 import { AboutMovieContent } from './AboutMovieContent/AboutMovieContent';
 import { MoviesByIds } from '../typedefs/typedefs';
+import { useResizingImage } from '../../hooks/useResizingImage';
+import { AboutMovieOverview } from './AboutMovieOverview/AboutMovieOverview';
 
 export const Container = styled(Box)(() => ({
   minHeight: 'calc(100vh - 70px)',
@@ -15,46 +16,52 @@ export const Container = styled(Box)(() => ({
 }));
 
 interface Props {
-  data: MoviesByIds;
+  data: MoviesByIds,
 }
 
 export const AboutMovie: FC<Props> = (props) => {
   const { data } = props;
 
+  const { replaceImagePath } = useResizingImage();
+
   const movieData = data?.moviesByIds[0];
+  const image = replaceImagePath(movieData?.backdropPath, 'w1280');
+
+  const BgImage = styled(Box)(() => ({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundImage: `url(${image})`,
+    filter: 'blur(3px)',
+    zIndex: -1,
+  }));
 
   return (
-    <Container>
-      <Paper sx={{ p: 3, maxWidth: 600 }} elevation={7}>
+    <Container sx={{ p: 2 }}>
+      <Paper
+        sx={{
+          p: 3,
+          maxWidth: 600,
+          position: 'relative',
+          overflow: 'hidden',
+          zIndex: 0,
+        }}
+        elevation={20}
+      >
         <Box>
-          <Box>
-            <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
-              {movieData?.title}
-            </Typography>
-          </Box>
+          <BgImage />
+
+          <AboutMovieTitle title={movieData?.title} />
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Box sx={{ p: 2 }}>
-              <img
-                src={movieData.image}
-                alt="movie"
-              />
-            </Box>
+            <AboutMovieMedia image={movieData?.image} />
 
             <Box sx={{ p: 1 }}>
               <AboutMovieContent movieData={movieData} />
 
-              <Box>
-                {movieData.overview ? (
-                  <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                    {movieData?.overview}
-                  </Typography>
-                ) : (
-                  <strong>
-                    <FormattedMessage id="selected_movie.overview" />
-                  </strong>
-                )}
-              </Box>
+              <AboutMovieOverview movie={movieData} />
             </Box>
           </Box>
         </Box>
