@@ -16,7 +16,8 @@ export default {
     confirm_modal_title: 'My favorite movies',
     placeholder: 'Put the list name',
     language: 'USA',
-    your_favorite_movie: 'Your favorite movies',
+    your_favorite_movies: 'Your favorite movies',
+    your_selected_movies: 'Your selected movies',
     search_by_title_input: 'Enter the title of the movie you want to find',
     selected_movie: {
       vote_average: 'Vote average',

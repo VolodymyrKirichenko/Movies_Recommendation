@@ -9,6 +9,19 @@ export interface Genres {
   genres: Genre[];
 }
 
+export interface Videos {
+  iso6391?: string;
+  iso31661?: string;
+  name?: string;
+  key?: string;
+  site?: string;
+  size?: number;
+  type?: string;
+  official?: boolean;
+  publishedAt?: string;
+  id?: string;
+}
+
 export interface Movie {
   id: string;
   image: string;
@@ -21,6 +34,7 @@ export interface Movie {
   overview: string;
   originalLanguage: string;
   backdropPath: string;
+  video?: Videos;
 }
 
 export interface Movies {

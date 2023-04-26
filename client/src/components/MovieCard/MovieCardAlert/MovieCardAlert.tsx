@@ -23,6 +23,8 @@ export const MovieCardAlert: FC<Props> = (props) => {
     id: `movieCardAlert.${cardAction}`,
   }), [cardAction, intl]);
 
+  const colorAlert = cardAction === CARD_ACTION.ActionAdded ? 'success' : 'error';
+
   return (
     <Box sx={{
       height: '10%',
@@ -43,6 +45,7 @@ export const MovieCardAlert: FC<Props> = (props) => {
           </IconButton>
           )}
         sx={{ mb: 2 }}
+        severity={colorAlert}
       >
         {message}
       </Alert>

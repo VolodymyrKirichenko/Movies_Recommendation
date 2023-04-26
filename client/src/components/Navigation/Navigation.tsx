@@ -65,7 +65,7 @@ export const Navigation: FC = () => {
             <Button
               component={RouterLink}
               to='favorites'
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ color: 'white', display: 'block' }}
             >
               <FormattedMessage id="navigation.favorite" />
             </Button>

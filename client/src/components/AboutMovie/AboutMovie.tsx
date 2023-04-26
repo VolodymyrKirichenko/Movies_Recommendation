@@ -9,7 +9,7 @@ import { useResizingImage } from '../../hooks/useResizingImage';
 import { AboutMovieOverview } from './AboutMovieOverview/AboutMovieOverview';
 
 export const Container = styled(Box)(() => ({
-  minHeight: 'calc(100vh - 70px)',
+  minHeight: 'calc(100vh - 64px)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -56,9 +56,11 @@ export const AboutMovie: FC<Props> = (props) => {
           <AboutMovieTitle title={movieData?.title} />
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <AboutMovieMedia image={movieData?.image} />
+            <Box>
+              <AboutMovieMedia movie={movieData} />
+            </Box>
 
-            <Box sx={{ p: 1 }}>
+            <Box sx={{ pl: 2 }}>
               <AboutMovieContent movieData={movieData} />
 
               <AboutMovieOverview movie={movieData} />

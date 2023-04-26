@@ -5,6 +5,19 @@ export const MovieByIdsSchema = gql`
         moviesByIds(ids: [Int]): [MovieByIds]
     }
 
+    type Videos {
+        iso6391: String
+        iso31661: String
+        name: String
+        key: String
+        site: String
+        size: Int
+        type: String
+        official: Boolean
+        publishedAt: String
+        id: String
+    }
+    
     type MovieByIds {
         id: ID!
         title: String!
@@ -18,7 +31,7 @@ export const MovieByIdsSchema = gql`
         backdropPath: String
         popularity: Float
         voteCount: Int
-        video: Boolean
+        video: Videos
         voteAverage: Float
         runtime: Int
     }

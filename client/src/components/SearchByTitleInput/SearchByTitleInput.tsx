@@ -64,7 +64,7 @@ export const SearchByTitleInput: FC<Props> = (props) => {
             <Button
               sx={{ width: '10%' }}
               variant="contained"
-              disabled={!searchKey && isClicked}
+              disabled={!searchKey && !isClicked}
               onClick={handleClickReset}
             >
               Reset

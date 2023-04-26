@@ -114,7 +114,7 @@ export const Home: FC = () => {
 
               <Paginator
                 filter={filter}
-                movieData={movieData}
+                movieData={listOfMovies}
                 onChangePage={handleChangePage}
               />
             </Paper>

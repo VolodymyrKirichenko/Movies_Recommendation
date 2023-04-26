@@ -18,8 +18,8 @@ export const Paginator: FC<Props> = (props) => {
     onChangePage,
   } = props;
 
-  const pageMovies = movieData?.movies?.totalResults < 500
-    ? movieData.movies.totalResults
+  const pageMovies = movieData?.movies?.totalPages < 500
+    ? movieData.movies.totalPages
     : 500;
 
   return (

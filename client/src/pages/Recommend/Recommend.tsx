@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Box,
   Grid,
@@ -7,6 +7,8 @@ import {
   Container,
 } from '@mui/material';
 import { useQuery } from '@apollo/client';
+import { FormattedMessage } from 'react-intl';
+import { Div } from '../Favorites/Favorites';
 import { HomeError } from '../Home/HomeError/HomeError';
 import { Movie } from '../../components/typedefs/typedefs';
 import { MOVIES_BY_IDS_QUERY } from './queries';
@@ -34,6 +36,8 @@ export const Recommend: FC = () => {
     data,
   } = useQuery(MOVIES_BY_IDS_QUERY, { variables: { ids: params.ids } });
 
+  console.log(data);
+
   useEffect(() => {
     const idsForParams = searchParams.get('ids');
     const title = searchParams.get('title');
@@ -50,23 +54,27 @@ export const Recommend: FC = () => {
   return (
     <Container maxWidth="xl">
       <Box sx={{ height: '100%' }}>
-        <Paper elevation={3} sx={{ padding: 5, minHeight: 'calc(100vh - 70px)' }}>
+        <Paper elevation={3} sx={{ pl: 5, pr: 5, minHeight: 'calc(100vh - 70px)' }}>
           {loading && <HomeLoader />}
 
           {error && <HomeError text="No selected movies" />}
 
           {data?.moviesByIds && (
-          <Grid container spacing={2} sx={{ padding: 5 }}>
-            {data.moviesByIds.map((movie: Movie) => (
-              <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>
-                <MovieCard
-                  movie={movie}
-                  onCardSelect={selectMovie}
-                  isPreviewMode={false}
-                />
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Div><FormattedMessage id="your_selected_movies" /></Div>
+
+              <Grid container spacing={2}>
+                {data.moviesByIds.map((movie: Movie) => (
+                  <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>
+                    <MovieCard
+                      movie={movie}
+                      onCardSelect={selectMovie}
+                      isPreviewMode={false}
+                    />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
+            </Box>
           )}
         </Paper>
       </Box>

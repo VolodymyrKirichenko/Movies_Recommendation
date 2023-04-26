@@ -16,7 +16,8 @@ export default {
     confirm_modal_title: 'Мої улюблені фільми',
     placeholder: 'Введіть  назву списку',
     language: 'UKR',
-    your_favorite_movie: 'Твої улюблені фільми',
+    your_favorite_movies: 'Твої улюблені фільми',
+    your_selected_movies: 'Твої вибрані фільми',
     search_by_title_input: 'Введіть назву фільму, який хочете знайти',
     selected_movie: {
       vote_average: 'Середня оцінка',
