@@ -22,20 +22,28 @@ interface Props {
 
 export const CardInfo: FC<Props> = (props) => {
   const { movie } = props;
+  const {
+    title,
+    genres,
+    voteAverage,
+    releaseDate,
+  } = movie;
+
+  const isLongTitle = title.length > 40;
 
   return (
     <CardInfoStyle>
       <Box>
-        {movie.title.length > 40 ? (
+        {isLongTitle ? (
           <CardInfoTooltip movie={movie} lastSymbol={25} />
         ) : (
           <Box>
-            {movie.title}
+            {title}
           </Box>
         )}
 
         <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
-          {typeof movie.genres === 'string' && movie.genres}
+          {typeof genres === 'string' && genres}
         </Typography>
       </Box>
 
@@ -45,11 +53,11 @@ export const CardInfo: FC<Props> = (props) => {
           sx={{ fontSize: 12 }}
           gutterBottom
         >
-          {movie.releaseDate}
+          {releaseDate}
         </Typography>
 
         <Typography variant="h6" gutterBottom sx={{ fontSize: 10 }}>
-          {movie.voteAverage}
+          {voteAverage}
         </Typography>
 
       </Box>

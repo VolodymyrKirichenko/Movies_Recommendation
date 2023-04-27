@@ -19,6 +19,8 @@ export default {
     your_favorite_movies: 'Your favorite movies',
     your_selected_movies: 'Your selected movies',
     search_by_title_input: 'Enter the title of the movie you want to find',
+    watch_button: 'Watch trailer',
+    no_trailer: 'Trailer is not found',
     selected_movie: {
       vote_average: 'Vote average',
       release_date: 'Release date',

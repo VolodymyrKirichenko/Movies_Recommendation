@@ -16,9 +16,9 @@ export const SelectItem: FC<Props> = (props) => {
     handleClick,
   } = props;
 
-  const text = useMemo(() => {
-    return language === 'en-us' ? 'USA' : 'UKR';
-  }, [language]);
+  const text = useMemo(() => (
+    language === 'en-us' ? 'USA' : 'UKR'
+  ), [language]);
 
   return (
     <MenuItem

@@ -36,7 +36,7 @@ export const Navigation: FC = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{ height: 70 }}>
           <Hidden only={['lg', 'xl']}>
             <IconButton
               onClick={handleChangeDrawer}
@@ -44,7 +44,6 @@ export const Navigation: FC = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
             >
               <MenuIcon />
             </IconButton>

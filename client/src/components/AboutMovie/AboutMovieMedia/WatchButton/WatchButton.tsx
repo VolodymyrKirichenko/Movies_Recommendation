@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import { Box } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
+import { Movie } from '../../../typedefs/typedefs';
 
 const watchButton = {
   position: 'absolute',
@@ -13,6 +15,7 @@ const watchButton = {
   justifyContent: 'center',
   alignItems: 'center',
   cursor: 'pointer',
+  fontWeight: 'bold',
   '&:hover': {
     opacity: '80%',
   },
@@ -20,17 +23,26 @@ const watchButton = {
 
 interface Props {
   onOpen: () => void,
+  movie: Movie,
 }
 
 export const WatchButton: FC<Props> = (props) => {
-  const { onOpen } = props;
+  const { onOpen, movie } = props;
 
   return (
-    <Box
-      sx={watchButton}
-      onClick={onOpen}
-    >
-      Watch trailer
-    </Box>
+    movie.video?.key ? (
+      <Box
+        sx={watchButton}
+        onClick={onOpen}
+      >
+        <FormattedMessage id="watch_button" />
+      </Box>
+    ) : (
+      <Box
+        sx={watchButton}
+      >
+        <FormattedMessage id="no_trailer" />
+      </Box>
+    )
   );
 };

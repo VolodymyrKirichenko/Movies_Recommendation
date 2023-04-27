@@ -3,6 +3,7 @@ import {
   Button, Tooltip, Box,
 } from '@mui/material';
 import { Movie } from '../../../typedefs/typedefs';
+import { textTruncation } from '../../../../helpers/textTruncation';
 
 interface Props {
   movie: Movie,
@@ -11,11 +12,12 @@ interface Props {
 
 export const CardInfoTooltip: FC<Props> = (props) => {
   const { movie, lastSymbol } = props;
+  const { title } = movie;
 
-  const shortTitle = movie.title.substring(0, lastSymbol);
+  const shortTitle = textTruncation(title, lastSymbol);
 
   return (
-    <Tooltip title={movie.title}>
+    <Tooltip title={title}>
       <Box>
         {shortTitle}
 

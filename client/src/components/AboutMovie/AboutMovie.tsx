@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { styled } from '@mui/material/styles';
-import { Box, Paper } from '@mui/material';
+import { Box, Hidden, Paper } from '@mui/material';
 import { AboutMovieTitle } from './AboutMovieTitle/AboutMovieTitle';
 import { AboutMovieMedia } from './AboutMovieMedia/AboutMovieMedia';
 import { AboutMovieContent } from './AboutMovieContent/AboutMovieContent';
@@ -9,7 +9,7 @@ import { useResizingImage } from '../../hooks/useResizingImage';
 import { AboutMovieOverview } from './AboutMovieOverview/AboutMovieOverview';
 
 export const Container = styled(Box)(() => ({
-  minHeight: 'calc(100vh - 64px)',
+  minHeight: 'calc(100vh - 70px)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -63,7 +63,15 @@ export const AboutMovie: FC<Props> = (props) => {
             <Box sx={{ pl: 2 }}>
               <AboutMovieContent movieData={movieData} />
 
-              <AboutMovieOverview movie={movieData} />
+              <Hidden only={['xs']}>
+                <AboutMovieOverview movie={movieData} />
+              </Hidden>
+            </Box>
+          </Box>
+
+          <Box sx={{ pt: 2, display: { sm: 'none' } }}>
+            <Box sx={{ fontWeight: 'bold', textShadow: '0px 0px 10px #fff' }}>
+              {movieData?.overview}
             </Box>
           </Box>
         </Box>

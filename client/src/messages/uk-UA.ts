@@ -19,6 +19,8 @@ export default {
     your_favorite_movies: 'Твої улюблені фільми',
     your_selected_movies: 'Твої вибрані фільми',
     search_by_title_input: 'Введіть назву фільму, який хочете знайти',
+    watch_button: 'Дивитися трейлер',
+    no_trailer: 'Трейлер не знайдено',
     selected_movie: {
       vote_average: 'Середня оцінка',
       release_date: 'Дата випуску',

@@ -11,6 +11,7 @@ import Flag from 'react-world-flags';
 import defaultContext from '../../../context/appContext/defaultContext';
 import { LOCALES } from '../../../context/appContext/const';
 import { SelectItem } from './SelectItem/SelectItem';
+import { useToggle } from '../../../hooks/useToggle';
 
 interface Props {
   state: typeof defaultContext,
@@ -29,20 +30,17 @@ export const SelectOfTranslation: FC<Props> = (props) => {
   ), []);
 
   const [speech, setSpeech] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
+
+  const { handleChangeOpen, isOpen } = useToggle();
 
   const handleChange = (event: SelectChangeEvent) => {
     setSpeech(event.target.value);
   };
 
-  const handleChangeOpening = useCallback(() => {
-    setIsOpen((prevState) => !prevState);
-  }, []);
-
   const handleClick = useCallback((lang: string) => {
     onChangeLanguage(lang);
-    handleChangeOpening();
-  }, [handleChangeOpening, onChangeLanguage]);
+    handleChangeOpen();
+  }, [handleChangeOpen, onChangeLanguage]);
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -58,7 +56,7 @@ export const SelectOfTranslation: FC<Props> = (props) => {
           label="Language"
           onChange={handleChange}
           open={isOpen}
-          onOpen={handleChangeOpening}
+          onOpen={handleChangeOpen}
         >
           {languageList.map((language) => (
             <SelectItem

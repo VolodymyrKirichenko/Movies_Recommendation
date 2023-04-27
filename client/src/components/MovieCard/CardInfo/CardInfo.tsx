@@ -2,11 +2,12 @@ import { styled } from '@mui/material/styles';
 import {
   Box, CardContent, Typography, Button,
 } from '@mui/material';
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import { Movie } from '../../typedefs/typedefs';
+import { useToggle } from '../../../hooks/useToggle';
 
 const CardInfoStyle = styled(CardContent)(({ theme }) => ({
   '&:last-child': {
@@ -26,11 +27,7 @@ interface Props {
 export const CardInfo: FC<Props> = (props) => {
   const { isPreviewMode, movie } = props;
 
-  const [open, setOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setOpen((prevState) => !prevState);
-  };
+  const { handleChangeOpen, isOpen } = useToggle();
 
   const getGenres = useMemo(() => {
     if (!isPreviewMode && Array.isArray(movie.genres)) {
@@ -50,14 +47,14 @@ export const CardInfo: FC<Props> = (props) => {
             {movie.title.substring(0, 37)}
 
             <Button
-              onClick={handleOpenModal}
+              onClick={handleChangeOpen}
               color="primary"
               sx={{ minWidth: 'max-content', p: 0 }}
             >
               ...
             </Button>
 
-            <Dialog open={open} onClose={handleOpenModal}>
+            <Dialog open={isOpen} onClose={handleChangeOpen}>
 
               <DialogTitle>Full Title</DialogTitle>
 

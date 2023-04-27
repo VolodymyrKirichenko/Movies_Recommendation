@@ -38,6 +38,8 @@ export const SearchByTitleInput: FC<Props> = (props) => {
 
   const intl = useIntl();
 
+  const isDisabledButton = !searchKey && !isClicked;
+
   return (
     <Box sx={{ mb: 2, pt: 2 }}>
       <Paper elevation={3}>
@@ -64,7 +66,7 @@ export const SearchByTitleInput: FC<Props> = (props) => {
             <Button
               sx={{ width: '10%' }}
               variant="contained"
-              disabled={!searchKey && !isClicked}
+              disabled={isDisabledButton}
               onClick={handleClickReset}
             >
               Reset

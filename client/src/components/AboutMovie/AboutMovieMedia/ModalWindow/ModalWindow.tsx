@@ -23,6 +23,8 @@ export const ModalWindow: FC<Props> = (props) => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const playerHeight = isMobile ? 300 : 400;
+  const playerWidth = isMobile ? 350 : 600;
 
   return (
     <Modal
@@ -35,8 +37,8 @@ export const ModalWindow: FC<Props> = (props) => {
         <Youtube
           videoId={movie.video?.key}
           opts={{
-            height: isMobile ? 300 : 400,
-            width: isMobile ? 350 : 600,
+            height: playerHeight,
+            width: playerWidth,
             playerVars: {
               autoplay: 1,
               controls: 1,

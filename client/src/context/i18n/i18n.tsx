@@ -13,11 +13,13 @@ interface Props {
 export const I18Provider: FC<Props> = (props) => {
   const { children, locale = LOCALES.ENGLISH } = props;
 
+  const message: Record<string, string> = flatten(messages[locale]);
+
   return (
     <IntlProvider
       textComponent={Fragment}
       locale={locale}
-      messages={flatten(messages[locale])}
+      messages={message}
     >
       {children}
     </IntlProvider>

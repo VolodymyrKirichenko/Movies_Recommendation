@@ -11,6 +11,9 @@ interface Props {
 export const AboutMovieOverview: FC<Props> = (props) => {
   const { movie } = props;
 
+  const isLongMobileOverview = movie?.overview.length > 120;
+  const isLongDesktopOverview = movie?.overview.length > 320;
+
   return (
     <Box>
       {movie.overview ? (
@@ -21,7 +24,7 @@ export const AboutMovieOverview: FC<Props> = (props) => {
             display: { md: 'none', lg: 'none', xl: 'none' },
           }}
           >
-            {movie?.overview.length > 120
+            {isLongMobileOverview
               ? <AboutMovieTooltip movie={movie} lastSymbol={120} />
               : movie?.overview
             }
@@ -29,7 +32,7 @@ export const AboutMovieOverview: FC<Props> = (props) => {
 
           <Hidden only={['xs', 'sm']}>
             <Box sx={{ fontWeight: 'bold', textShadow: '0px 0px 10px #fff' }}>
-              {movie?.overview.length > 320
+              {isLongDesktopOverview
                 ? <AboutMovieTooltip movie={movie} lastSymbol={320} />
                 : movie?.overview
               }
@@ -37,9 +40,9 @@ export const AboutMovieOverview: FC<Props> = (props) => {
           </Hidden>
         </>
       ) : (
-        <strong>
+        <Box sx={{ fontWeight: 'bold', textShadow: '0px 0px 10px #fff' }}>
           <FormattedMessage id="selected_movie.overview" />
-        </strong>
+        </Box>
       )}
     </Box>
   );

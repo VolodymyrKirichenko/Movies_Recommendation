@@ -36,8 +36,6 @@ export const Recommend: FC = () => {
     data,
   } = useQuery(MOVIES_BY_IDS_QUERY, { variables: { ids: params.ids } });
 
-  console.log(data);
-
   useEffect(() => {
     const idsForParams = searchParams.get('ids');
     const title = searchParams.get('title');
