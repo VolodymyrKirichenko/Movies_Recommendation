@@ -1,6 +1,7 @@
 import { getDetails } from './getMoviesByIds.resolvers';
 import { MovieByIds } from '../../entities/MovieByIds';
 import { Context } from '../../typedefs/typedefs';
+import { video } from '../../video/video.resolvers/videos.resolvers';
 
 interface Args {
   ids: number[];
@@ -11,8 +12,17 @@ export const moviesByIds = async (parent: any, { ids }: Args, context: Context) 
     return await Promise.all(
       ids.map(async (id: number) => {
         const response = await getDetails(id, context.locale);
+        const movieDetails = response.data;
 
-        return new MovieByIds(response.data);
+        let videoDetails = null;
+
+        try {
+          videoDetails = await video(id);
+        } catch (error) {
+          console.error(`Failed to fetch video details for movie with id ${id}: ${error}`);
+        }
+
+        return new MovieByIds(movieDetails, videoDetails);
       })
     );
   } catch (error) {

@@ -12,6 +12,22 @@ export const MOVIES_BY_IDS_QUERY = gql`
                 name
             }
             runtime
+            overview
+            originalLanguage
+            voteAverage
+            backdropPath
+            video {
+                iso6391
+                iso31661
+                name
+                key
+                site
+                size
+                type
+                official
+                publishedAt
+                id
+            }
         }
     }
 `;

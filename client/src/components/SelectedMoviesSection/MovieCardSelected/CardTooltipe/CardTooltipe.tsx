@@ -4,13 +4,14 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses, TooltipProps } from '@mui/material/Tooltip';
+import { FormattedMessage } from 'react-intl';
 import { Movie } from '../../../typedefs/typedefs';
 
 interface Props {
   movie: Movie,
 }
 
-export const CardTooltipe: FC<Props> = (props) => {
+export const CardTooltip: FC<Props> = (props) => {
   const { movie } = props;
 
   const HtmlTooltip = styled(({ className, ...p }: TooltipProps) => (
@@ -44,9 +45,10 @@ export const CardTooltipe: FC<Props> = (props) => {
             </Box>
           </Box>
         )}
+        placement="bottom"
       >
         <Button sx={{ p: 0 }}>
-          Description of the film
+          <FormattedMessage id="description" />
         </Button>
       </HtmlTooltip>
     </Box>

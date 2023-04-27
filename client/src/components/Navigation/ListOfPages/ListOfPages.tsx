@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { FormattedMessage } from 'react-intl';
 
 export const ListOfPages: FC = () => {
   return (
@@ -14,7 +15,7 @@ export const ListOfPages: FC = () => {
             <ListItemIcon>
               <FavoriteIcon />
             </ListItemIcon>
-            <ListItemText primary="Favorites" />
+            <ListItemText primary={<FormattedMessage id='navigation.favorite' />} />
           </ListItemButton>
         </ListItem>
       </Link>

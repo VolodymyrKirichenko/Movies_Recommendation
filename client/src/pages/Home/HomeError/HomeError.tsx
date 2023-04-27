@@ -1,10 +1,19 @@
 import React, { FC } from 'react';
-import { Typography } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
-export const HomeError: FC = () => {
+interface Props {
+  text: string,
+}
+
+export const HomeError: FC<Props> = (props) => {
+  const { text } = props;
+
   return (
-    <Typography>
-      try again
-    </Typography>
+    <Alert severity="error">
+      <AlertTitle>Error</AlertTitle>
+      {`${text} `}
+      <strong>Try again!</strong>
+    </Alert>
   );
 };

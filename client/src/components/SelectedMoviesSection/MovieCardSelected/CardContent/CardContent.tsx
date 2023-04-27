@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Box, Typography, CardContent } from '@mui/material';
-import { CardTooltipe } from '../CardTooltipe/CardTooltipe';
+import { FormattedMessage } from 'react-intl';
+import { CardTooltip } from '../CardTooltipe/CardTooltipe';
 import { Movie } from '../../../typedefs/typedefs';
 
 interface Props {
@@ -22,11 +23,12 @@ export const CardContentFile: FC<Props> = (props) => {
         </Typography>
       </CardContent>
 
-      <CardTooltipe movie={movie} />
+      <CardTooltip movie={movie} />
 
       <Box sx={{ display: 'flex', p: 2 }}>
         <Typography variant="subtitle1" component="div">
-          {`Vote average: ${movie.voteAverage}`}
+          <FormattedMessage id="vote_average" />
+          {`: ${movie.voteAverage}`}
         </Typography>
 
         <Typography variant="subtitle1" color="text.secondary" component="div">

@@ -4,13 +4,25 @@ import { Box, MenuItem } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Movie } from '../../typedefs/typedefs';
 import { CardMenu } from '../CardMenu/CardMenu';
+import { useSearch } from '../../../hooks/useSearch';
 
-const MenuItems = styled(MenuItem)(() => ({
+export const MenuItems = styled(MenuItem)(() => ({
   display: 'flex',
   justifyContent: 'flex-start',
   gap: 10,
+}));
+
+export const StyledLink = styled(Link)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 10,
+  textDecoration: 'none',
+  color: 'inherit',
 }));
 
 interface Props {
@@ -30,23 +42,39 @@ export const CardMenuData: FC<Props> = (props) => {
     onSelectMovie,
   } = props;
 
+  const { getSearch } = useSearch();
+
   return (
     <CardMenu>
       <Box>
+        <MenuItems>
+          <StyledLink
+            to={{
+              pathname: '/selectedMovie',
+              search: getSearch(movie.id),
+            }}
+            target="_blank"
+            aria-label="preview"
+          >
+            <InfoOutlinedIcon />
+            <FormattedMessage id="burger_menu.info" />
+          </StyledLink>
+        </MenuItems>
+
         <MenuItems onClick={() => onCardSelect(movie)}>
           <FormatListBulletedIcon />
-          Add to list
+          <FormattedMessage id="burger_menu.select" />
         </MenuItems>
 
         {!isMovieAdded ? (
           <MenuItems onClick={() => onSelectMovie(movie)}>
             <FavoriteBorderIcon />
-            Favorite
+            <FormattedMessage id="burger_menu.favorite" />
           </MenuItems>
         ) : (
           <MenuItems onClick={onDeleteCard}>
             <FavoriteIcon />
-            Favorite
+            <FormattedMessage id="burger_menu.favorite" />
           </MenuItems>
         )}
       </Box>

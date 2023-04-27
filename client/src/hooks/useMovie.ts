@@ -1,11 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Movie } from '../components/typedefs/typedefs';
+import { useTimer } from './useTimer';
 
 const MAX_SELECTED_MOVIES = 20;
 
 export const useMovie = () => {
   const [selectedMovies, setSelectedMovies] = useState<Movie[]>([]);
   const [openAlert, setOpenAlert] = useState(false);
+  const delay = 1000;
+
+  useTimer({ openAlert, setOpenAlert, delay });
 
   const handleChangeAlert = useCallback(() => {
     setOpenAlert((prevState) => !prevState);
@@ -28,18 +32,6 @@ export const useMovie = () => {
       prevSelectedMovies.filter(({ id }) => id !== movie.id)
     ));
   }, [setSelectedMovies]);
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-
-    if (openAlert) {
-      timer = setTimeout(() => {
-        setOpenAlert(false);
-      }, 3000);
-    }
-
-    return () => clearTimeout(timer);
-  }, [openAlert]);
 
   return {
     openAlert,

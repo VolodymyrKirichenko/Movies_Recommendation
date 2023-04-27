@@ -1,4 +1,6 @@
 import Button from '@mui/material/Button';
+import { FormattedMessage } from 'react-intl';
+import React from 'react';
 
 export const SubmitField = () => {
   return (
@@ -8,7 +10,7 @@ export const SubmitField = () => {
       size="large"
       sx={{ height: 'max-content' }}
     >
-      Submit
+      <FormattedMessage id="submit" />
     </Button>
   );
 };

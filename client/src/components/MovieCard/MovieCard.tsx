@@ -1,7 +1,8 @@
 import { Card } from '@mui/material';
 import React, { FC, useCallback, useMemo } from 'react';
+import { SelectedCardMenu } from '../SelectedMoviesSection/MovieCardSelected/SelectedCardMenu/SelectedCardMenu';
 import { CardMenuData } from './CardMenuData/CardMenuData';
-import { useLocalStorage } from '../../hooks/useLocaleStorage';
+import { useMovieLocaleStorage } from '../../hooks/useMovieLocaleStorage';
 import { CARD_ACTION, Movie } from '../typedefs/typedefs';
 import { CardMediaFile } from './CardMedia/CardMedia';
 import { CardInfo } from './CardInfo/CardInfo';
@@ -24,7 +25,7 @@ export const MovieCard: FC<Props> = (props) => {
   } = props;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [favoriteMovies, _, addToFavoriteMovies, removeMovie] = useLocalStorage(
+  const [favoriteMovies, _, addToFavoriteMovies, removeMovie] = useMovieLocaleStorage(
     'movies_favorite',
     [],
   );
@@ -63,12 +64,11 @@ export const MovieCard: FC<Props> = (props) => {
 
   return (
     <Card sx={{
-      maxWidth: 200,
-      height: 400,
+      height: 440,
       position: 'relative',
     }}
     >
-      {isPreviewMode && (
+      {isPreviewMode ? (
         <CardMenuData
           movie={movie}
           onCardSelect={onCardSelect}
@@ -76,6 +76,8 @@ export const MovieCard: FC<Props> = (props) => {
           isMovieAdded={isFilmAlreadyAdded}
           onDeleteCard={handleDelete}
         />
+      ) : (
+        <SelectedCardMenu movie={movie} />
       )}
 
       <CardMediaFile

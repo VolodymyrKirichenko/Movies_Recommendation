@@ -1,30 +1,22 @@
-import React, { useReducer, createContext } from 'react';
-import defaultContext from './defaultContext';
-
-interface AppContextProviderProps {
-  children: React.ReactNode;
-}
-
-interface Action {
-  type: string;
-  locale?: string;
-}
-
-interface AppContextType {
-  state: typeof defaultContext;
-  dispatch: React.Dispatch<Action>;
-}
+import {
+  useReducer, createContext, useMemo,
+} from 'react';
+import { useDefaultContext } from './defaultContext';
+import { LOCALES } from './const';
+import { Action, AppContextProviderProps, AppContextType } from '../../components/typedefs/typedefs';
 
 export const AppContext = createContext<AppContextType>({
-  state: defaultContext,
+  state: {
+    locale: LOCALES.ENGLISH,
+  },
   dispatch: () => null,
 });
 
 const reducer = (state: any, action: Action) => {
   switch (action.type) {
-    case 'reset':
-      return defaultContext;
     case 'setLocale':
+      window.localStorage.setItem('locale', JSON.stringify(action.locale));
+
       return { ...state, locale: action.locale };
     default:
       return state;
@@ -32,8 +24,10 @@ const reducer = (state: any, action: Action) => {
 };
 
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
+  const defaultContext = useDefaultContext();
   const [state, dispatch] = useReducer(reducer, defaultContext);
-  const value = React.useMemo(() => ({ state, dispatch }), [state, dispatch]);
+
+  const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
 
   return (
     <AppContext.Provider value={value}>

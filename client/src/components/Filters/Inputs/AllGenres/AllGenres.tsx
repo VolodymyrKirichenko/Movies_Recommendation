@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import {
   Box, Button, Grid,
 } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
 import { Genres, MoviesFilterInput } from '../../../typedefs/typedefs';
 
 interface Props {
@@ -13,7 +14,7 @@ export const AllGenres: FC<Props> = (props) => {
   const { data, onSubmit } = props;
 
   const handleGenreClick = (id: number) => {
-    const filterInput: any = {
+    const filterInput: MoviesFilterInput = {
       page: 1,
       sortBy: 'popularity',
       sortDirection: 'desc',
@@ -34,7 +35,7 @@ export const AllGenres: FC<Props> = (props) => {
               value={id}
               onClick={() => handleGenreClick(id)}
             >
-              {name}
+              <FormattedMessage id={`genres.${name}`} />
             </Button>
           </Grid>
         ))}

@@ -2,7 +2,8 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
+import { useIntl } from 'react-intl';
 import { CARD_ACTION } from '../../typedefs/typedefs';
 
 interface Props {
@@ -15,6 +16,14 @@ export const MovieCardAlert: FC<Props> = (props) => {
     cardAction,
     onChangeAlert,
   } = props;
+
+  const intl = useIntl();
+
+  const message = useMemo(() => intl.formatMessage({
+    id: `movieCardAlert.${cardAction}`,
+  }), [cardAction, intl]);
+
+  const colorAlert = cardAction === CARD_ACTION.ActionAdded ? 'success' : 'error';
 
   return (
     <Box sx={{
@@ -36,8 +45,9 @@ export const MovieCardAlert: FC<Props> = (props) => {
           </IconButton>
           )}
         sx={{ mb: 2 }}
+        severity={colorAlert}
       >
-        {`Movie was ${cardAction === CARD_ACTION.ActionAdded ? 'added' : 'delete'}`}
+        {message}
       </Alert>
     </Box>
   );

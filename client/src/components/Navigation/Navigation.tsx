@@ -1,4 +1,4 @@
-import {
+import React, {
   FC, useState, useContext, useCallback,
 } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -13,6 +13,7 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
 import { AppContext } from '../../context/appContext/appContext';
 import { SelectOfTranslation } from './SelectOfTranslation/SelectOfTranslation';
 import { NavDrawer } from './NavDrawer/NavDrawer';
@@ -35,7 +36,7 @@ export const Navigation: FC = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{ height: 70 }}>
           <Hidden only={['lg', 'xl']}>
             <IconButton
               onClick={handleChangeDrawer}
@@ -43,7 +44,6 @@ export const Navigation: FC = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
             >
               <MenuIcon />
             </IconButton>
@@ -51,7 +51,7 @@ export const Navigation: FC = () => {
 
           <Link component={RouterLink} to='/' sx={{ flexGrow: 1 }}>
             <Typography variant="h6" component="div" sx={{ color: 'white', flexGrow: 1 }}>
-              Movies recommendation
+              <FormattedMessage id="navigation.home" />
             </Typography>
           </Link>
 
@@ -64,9 +64,9 @@ export const Navigation: FC = () => {
             <Button
               component={RouterLink}
               to='favorites'
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ color: 'white', display: 'block' }}
             >
-              Favorites
+              <FormattedMessage id="navigation.favorite" />
             </Button>
           </Box>
         </Toolbar>

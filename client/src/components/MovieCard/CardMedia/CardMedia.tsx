@@ -35,7 +35,7 @@ export const CardMediaFile: FC<Props> = (props) => {
     <Box sx={{ position: 'relative' }}>
       <CardMedia
         component="img"
-        height="260"
+        height="300"
         image={movie.image}
         alt={movie.title}
       />
