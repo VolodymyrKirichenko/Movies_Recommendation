@@ -15,7 +15,7 @@ import { MenuItems, StyledLink } from '../MovieCard/CardMenuData/CardMenuData';
 
 interface Props {
   movie: Movie,
-  onDelete: (movieId: string) => void,
+  onDelete: (film: Movie) => void,
 }
 
 export const FavoriteCard: FC<Props> = (props) => {
@@ -41,7 +41,7 @@ export const FavoriteCard: FC<Props> = (props) => {
             </StyledLink>
           </MenuItems>
 
-          <MenuItems onClick={() => onDelete(movie.id)}>
+          <MenuItems onClick={() => onDelete(movie)}>
             <DeleteIcon />
             <FormattedMessage id="burger_menu.delete" />
           </MenuItems>

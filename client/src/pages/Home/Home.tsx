@@ -1,6 +1,4 @@
-import React, {
-  FC, useCallback, useState,
-} from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import {
   Box, Container, Grid, Paper,
 } from '@mui/material';
@@ -8,7 +6,7 @@ import { useLazyQuery, useQuery } from '@apollo/client';
 import { HomeLoader } from './HomeLoader/HomeLoader';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import { MOVIES_QUERY } from './queries';
-import { CARD_ACTION, Movie, MoviesFilterInput } from '../../components/typedefs/typedefs';
+import { Movie, MoviesFilterInput } from '../../components/typedefs/typedefs';
 import { useMovie } from '../../hooks/useMovie';
 import { SelectedMoviesSection } from '../../components/SelectedMoviesSection/SelectedMoviesSection';
 import { useFilters } from '../../hooks/useFilters';
@@ -20,7 +18,6 @@ import { SearchByTitleInput } from '../../components/SearchByTitleInput/SearchBy
 import { SELECTED_MOVIES_QUERY } from './selectedMoviesQueries';
 
 export const Home: FC = () => {
-  const [cardAction, setCardAction] = useState<CARD_ACTION>(CARD_ACTION.ActionAdded);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
@@ -40,6 +37,9 @@ export const Home: FC = () => {
     deleteMovie,
     selectedMovies,
     handleChangeAlert,
+    handleModifyMovie,
+    cardAction,
+    favoriteMovies,
   } = useMovie();
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, selectedPage: number) => {
@@ -84,10 +84,10 @@ export const Home: FC = () => {
           <Grid item xs={12} md={8}>
             <Paper elevation={3}>
               {openAlert && (
-              <MovieCardAlert
-                cardAction={cardAction}
-                onChangeAlert={handleChangeAlert}
-              />
+                <MovieCardAlert
+                  cardAction={cardAction}
+                  onChangeAlert={handleChangeAlert}
+                />
               )}
 
               <Box sx={{ flexGrow: 1, padding: 1, height: 'max-content' }}>
@@ -97,17 +97,21 @@ export const Home: FC = () => {
 
                 {listOfMovies && (
                 <Grid container spacing={1}>
-                  {listOfMovies.movies.results.map((movie: Movie) => (
-                    <Grid key={movie.id} item xs={6} sm={4} md={4} lg={3}>
-                      <MovieCard
-                        movie={movie}
-                        onCardSelect={selectMovie}
-                        isPreviewMode
-                        onChangeAlert={handleChangeAlert}
-                        onCardAction={setCardAction}
-                      />
-                    </Grid>
-                  ))}
+                  {listOfMovies.movies.results.map((movie: Movie) => {
+                    const isAlreadyAdded = favoriteMovies.some(({ id }) => id === movie.id);
+
+                    return (
+                      <Grid key={movie.id} item xs={6} sm={4} md={4} lg={3}>
+                        <MovieCard
+                          movie={movie}
+                          onCardSelect={selectMovie}
+                          isPreviewMode
+                          onModifyMovies={handleModifyMovie}
+                          isAdded={isAlreadyAdded}
+                        />
+                      </Grid>
+                    );
+                  })}
                 </Grid>
                 )}
               </Box>

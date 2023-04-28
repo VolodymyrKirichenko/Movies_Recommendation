@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 import {
   Box,
   Grid,
@@ -9,8 +9,8 @@ import {
 import { styled } from '@mui/material/styles';
 import { FormattedMessage } from 'react-intl';
 import { Movie } from '../../components/typedefs/typedefs';
-import { useMovieLocaleStorage } from '../../hooks/useMovieLocaleStorage';
 import { FavoriteCard } from '../../components/FavoriteCard/FavoriteCard';
+import { useMovie } from '../../hooks/useMovie';
 
 const NoMovies = styled(Box)(() => ({
   height: '100%',
@@ -29,17 +29,7 @@ export const Div = styled('div')(({ theme }) => ({
 }));
 
 export const Favorites: FC = () => {
-  const [
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    favoriteMovies, setFavoriteMovies, addToFavoriteMovies, removeMovie,
-  ] = useMovieLocaleStorage(
-    'movies_favorite',
-    [],
-  );
-
-  const handleDelete = useCallback((movieId: string) => {
-    removeMovie(movieId);
-  }, [removeMovie]);
+  const { favoriteMovies, handleModifyMovie } = useMovie();
 
   return (
     <Container maxWidth="xl">
@@ -54,7 +44,7 @@ export const Favorites: FC = () => {
                   <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>
                     <FavoriteCard
                       movie={movie}
-                      onDelete={handleDelete}
+                      onDelete={handleModifyMovie}
                     />
                   </Grid>
                 ))}

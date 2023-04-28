@@ -1,10 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import React, { FC, useEffect, useState } from 'react';
 import {
-  Box,
-  Grid,
-  Paper,
-  Container,
+  Box, Grid, Paper, Container,
 } from '@mui/material';
 import { useQuery } from '@apollo/client';
 import { FormattedMessage } from 'react-intl';
@@ -62,15 +59,17 @@ export const Recommend: FC = () => {
               <Div><FormattedMessage id="your_selected_movies" /></Div>
 
               <Grid container spacing={2}>
-                {data.moviesByIds.map((movie: Movie) => (
-                  <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>
-                    <MovieCard
-                      movie={movie}
-                      onCardSelect={selectMovie}
-                      isPreviewMode={false}
-                    />
-                  </Grid>
-                ))}
+                {data.moviesByIds.map((movie: Movie) => {
+                  return (
+                    <Grid key={movie.id} item xs={6} sm={4} md={3} lg={2}>
+                      <MovieCard
+                        movie={movie}
+                        onCardSelect={selectMovie}
+                        isPreviewMode={false}
+                      />
+                    </Grid>
+                  );
+                })}
               </Grid>
             </Box>
           )}
