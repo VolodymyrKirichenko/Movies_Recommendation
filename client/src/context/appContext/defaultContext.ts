@@ -1,12 +1,14 @@
 import { LOCALES } from './const';
-import { getFromStorage } from '../../hooks/useLocalStorage';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 export default {
   locale: LOCALES.ENGLISH,
 };
 
 export const useDefaultContext = () => {
+  const [locale] = useLocalStorage('locale', []);
+
   return {
-    locale: getFromStorage('locale') || LOCALES.ENGLISH,
+    locale: locale || LOCALES.ENGLISH,
   };
 };

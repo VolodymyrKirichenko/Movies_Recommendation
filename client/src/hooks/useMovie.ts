@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { CARD_ACTION, Movie } from '../components/typedefs/typedefs';
 import { useTimer } from './useTimer';
-import { useLocalStorageMovie } from './useLocalStorageMovie';
+import { useLocalStorage } from './useLocalStorage';
 
 const MAX_SELECTED_MOVIES = 20;
 
@@ -11,7 +11,7 @@ export const useMovie = () => {
   const [cardAction, setCardAction] = useState<CARD_ACTION>(CARD_ACTION.ActionAdded);
   const delay = 1000;
 
-  const [favoriteMovies, setMovie] = useLocalStorageMovie<Movie[]>('movies_favorite', []);
+  const [favoriteMovies, setMovie] = useLocalStorage<Movie[]>('movies_favorite', []);
 
   useTimer({ openAlert, setOpenAlert, delay });
 
