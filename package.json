@@ -8,7 +8,8 @@
     "api": "npm --prefix ./server run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently --names \"server, client\" -c \"green,magenta\" \"npm run api\" \"npm run frontend\"",
-    "build": "react-scripts build",
+    "build": "tsc",
+    "start": "ts-node server/src/index.ts"
   },
   "repository": {
     "type": "git",
