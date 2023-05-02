@@ -21,6 +21,7 @@ export default {
     search_by_title_input: 'Enter the title of the movie you want to find',
     watch_button: 'Watch trailer',
     no_trailer: 'Trailer is not found',
+    share_with_friends: 'Share with your friends:',
     selected_movie: {
       vote_average: 'Vote average',
       release_date: 'Release date',

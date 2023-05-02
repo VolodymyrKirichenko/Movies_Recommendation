@@ -15,6 +15,7 @@ export const MOVIES_QUERY = gql`
                 genres
                 voteAverage
                 overview
+                backdropPath
             }
         }
     }
