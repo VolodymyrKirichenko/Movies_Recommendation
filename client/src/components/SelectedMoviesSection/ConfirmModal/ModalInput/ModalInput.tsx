@@ -26,6 +26,7 @@ export const ModalInput: FC<Props> = (props) => {
         display: 'flex',
         alignItems: 'center',
         width: '100%',
+        position: 'relative',
       }}
       elevation={7}
     >

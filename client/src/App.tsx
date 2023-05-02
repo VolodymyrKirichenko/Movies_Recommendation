@@ -25,12 +25,10 @@ import { Recommend } from './pages/Recommend/Recommend';
 import { AppContext } from './context/appContext/appContext';
 import { I18Provider } from './context/i18n/i18n';
 import { SelectedMovie } from './pages/SelectedMovie/SelectedMovie';
-import { useResizingImage } from './hooks/useResizingImage';
+import { replaceImagePath } from './helpers/resizingImage';
 
 export const App: FC = () => {
   const [pathImage, setPathImage] = useState('');
-
-  const { replaceImagePath } = useResizingImage();
 
   const { state } = useContext(AppContext);
 

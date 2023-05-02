@@ -23,8 +23,8 @@ export const ModalWindow: FC<Props> = (props) => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const playerHeight = isMobile ? 300 : 400;
-  const playerWidth = isMobile ? 350 : 600;
+  const playerHeight = isMobile ? window.innerHeight : 400;
+  const playerWidth = isMobile ? window.innerWidth : 600;
 
   return (
     <Modal

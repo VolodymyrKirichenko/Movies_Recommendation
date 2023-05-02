@@ -5,8 +5,8 @@ import { AboutMovieTitle } from './AboutMovieTitle/AboutMovieTitle';
 import { AboutMovieMedia } from './AboutMovieMedia/AboutMovieMedia';
 import { AboutMovieContent } from './AboutMovieContent/AboutMovieContent';
 import { MoviesByIds } from '../typedefs/typedefs';
-import { useResizingImage } from '../../hooks/useResizingImage';
 import { AboutMovieOverview } from './AboutMovieOverview/AboutMovieOverview';
+import { replaceImagePath } from '../../helpers/resizingImage';
 
 export const Container = styled(Box)(() => ({
   minHeight: 'calc(100vh - 70px)',
@@ -21,8 +21,6 @@ interface Props {
 
 export const AboutMovie: FC<Props> = (props) => {
   const { data } = props;
-
-  const { replaceImagePath } = useResizingImage();
 
   const movieData = data?.moviesByIds[0];
   const image = replaceImagePath(movieData?.backdropPath, 'w1280');

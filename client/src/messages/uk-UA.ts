@@ -21,6 +21,7 @@ export default {
     search_by_title_input: 'Введіть назву фільму, який хочете знайти',
     watch_button: 'Дивитися трейлер',
     no_trailer: 'Трейлер не знайдено',
+    share_with_friends: 'Ділись зі своїми друзями:',
     selected_movie: {
       vote_average: 'Середня оцінка',
       release_date: 'Дата випуску',

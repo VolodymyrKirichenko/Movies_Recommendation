@@ -1,13 +1,17 @@
 import { useCallback, useState } from 'react';
-import { Movie } from '../components/typedefs/typedefs';
+import { CARD_ACTION, Movie } from '../components/typedefs/typedefs';
 import { useTimer } from './useTimer';
+import { useLocalStorage } from './useLocalStorage';
 
 const MAX_SELECTED_MOVIES = 20;
 
 export const useMovie = () => {
-  const [selectedMovies, setSelectedMovies] = useState<Movie[]>([]);
   const [openAlert, setOpenAlert] = useState(false);
+  const [selectedMovies, setSelectedMovies] = useState<Movie[]>([]);
+  const [cardAction, setCardAction] = useState<CARD_ACTION>(CARD_ACTION.ActionAdded);
   const delay = 1000;
+
+  const [favoriteMovies, setMovie] = useLocalStorage<Movie[]>('movies_favorite', []);
 
   useTimer({ openAlert, setOpenAlert, delay });
 
@@ -33,12 +37,35 @@ export const useMovie = () => {
     ));
   }, [setSelectedMovies]);
 
+  const handleModifyMovie = useCallback((movie: Movie) => {
+    const isAlreadyAdded = favoriteMovies.some(({ id }) => id === movie.id);
+
+    if (isAlreadyAdded) {
+      const newMovies = favoriteMovies.filter(({ id }) => id !== movie.id);
+
+      setMovie(newMovies);
+      setCardAction(CARD_ACTION.ActionDelete);
+      handleChangeAlert();
+
+      return;
+    }
+
+    const newMovies = [...favoriteMovies, movie];
+
+    setMovie(newMovies);
+    setCardAction(CARD_ACTION.ActionAdded);
+    handleChangeAlert();
+  }, [favoriteMovies, handleChangeAlert, setMovie]);
+
   return {
+    cardAction,
+    handleModifyMovie,
     openAlert,
     selectMovie,
     deleteMovie,
     handleChangeAlert,
     setOpenAlert,
     selectedMovies,
+    favoriteMovies,
   };
 };

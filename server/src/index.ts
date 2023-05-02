@@ -3,9 +3,11 @@ import express from 'express';
 import { Request } from 'express';
 import * as http from 'http';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
-
 import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
+
+const PORT = process.env.PORT;
+
 
 const api = async () => {
   const app = express();
@@ -26,7 +28,7 @@ const api = async () => {
 
   const graphqlSendBoxUrl = ['https://studio.apollographql.com'];
 
-  const port = 4000;
+  const port = PORT;
 
   await server.start();
 
