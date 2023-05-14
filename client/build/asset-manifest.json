@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/Movies_Recommendation/static/js/main.a4e7d7ba.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/Movies_Recommendation/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/Movies_Recommendation/index.html",
+    "main.a4e7d7ba.js.map": "/Movies_Recommendation/static/js/main.a4e7d7ba.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/Movies_Recommendation/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.a4e7d7ba.js"
+  ]
+}

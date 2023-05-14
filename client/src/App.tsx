@@ -32,7 +32,7 @@ export const App: FC = () => {
 
   const { state } = useContext(AppContext);
 
-  const httpLink = new HttpLink({ uri: 'http://localhost:4000/api' });
+  const httpLink = new HttpLink({ uri: 'https://movieapp-fsa0.onrender.com/api' });
   const localeMiddleware = new ApolloLink((operation, forward) => {
     const getContext = operation.getContext();
     const customHeaders = getContext.headers ? getContext.headers : {};

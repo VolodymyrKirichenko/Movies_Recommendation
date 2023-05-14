@@ -5,12 +5,12 @@ import * as http from 'http';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
-
-const PORT = process.env.PORT;
-
+import dotenv from 'dotenv';
 
 const api = async () => {
   const app = express();
+
+  dotenv.config();
   const httpServer = http.createServer(app);
 
   const context = ({req}: { req: Request}) => ({
@@ -28,18 +28,18 @@ const api = async () => {
 
   const graphqlSendBoxUrl = ['https://studio.apollographql.com'];
 
-  const port = PORT;
+  const port = process.env.PORT;
 
   await server.start();
 
   server.applyMiddleware({
     app,
     cors: {
-      origin: [`http://localhost:3000`, ...graphqlSendBoxUrl],
+      origin: [`http://localhost:3000`, 'https://movies-f6s8.vercel.app/', ...graphqlSendBoxUrl],
       credentials: true,
     },
     path: '/api',
-  });``;
+  });
 
   await new Promise<void>(
     (resolve) => httpServer.listen({ port }, resolve)
