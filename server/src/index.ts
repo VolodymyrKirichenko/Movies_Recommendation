@@ -26,8 +26,6 @@ const api = async () => {
     context
   });
 
-  const graphqlSendBoxUrl = ['https://studio.apollographql.com'];
-
   const port = process.env.PORT;
 
   await server.start();
@@ -35,7 +33,7 @@ const api = async () => {
   server.applyMiddleware({
     app,
     cors: {
-      origin: [`http://localhost:3000`, 'https://movies-f6s8.vercel.app/', ...graphqlSendBoxUrl],
+      origin: '*',
       credentials: true,
     },
     path: '/api',
